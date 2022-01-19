@@ -14,11 +14,11 @@ html, body {
 }
 
 .jp {
-    font-family: "Noto Sans JP";
+    font-family: "Noto Sans JP", sans-serif;
 }
 
 .kyoka {
-    font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium";
+    font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium", sans-serif;
 }
 
 
