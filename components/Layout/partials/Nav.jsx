@@ -55,7 +55,7 @@ const Nav = props => {
                 {/*        <MdSettings />*/}
                 {/*    </a>*/}
                 {/*</Link>*/}
-                <Link href="#">
+                <Link href="/about">
                     <a className={`py-2 px-2 md:px-4`}>
                         <MdHelpOutline />
                     </a>
