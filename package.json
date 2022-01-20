@@ -1,5 +1,5 @@
 {
-  "name": "react-jotoba",
+  "name": "react-jisho",
   "private": true,
   "scripts": {
     "dev": "next dev",
