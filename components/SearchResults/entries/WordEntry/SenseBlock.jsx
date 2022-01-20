@@ -23,13 +23,11 @@ const SenseBlock = props => {
                 {posBlocks.join(", ")}
             </div>
             <ol className={`pl-8 text-lg list-decimal`}>
-                {glossBlocks.map(
-                    (glossBlock, index) => (
-                        <li key={`gloss-${index}`}>
-                            {glossBlock}
-                        </li>
-                    )
-                )}
+                {glossBlocks.map((glossBlock, index) => (
+                    <li key={`gloss-${index}`}>
+                        {glossBlock}
+                    </li>
+                ))}
             </ol>
         </>
     );

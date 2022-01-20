@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -10,7 +10,7 @@ const Hero = () => {
     const submitHandler = () => {
         if (searchTerm)
             router.push(`/search/${searchTerm}`);
-    }
+    };
 
     return (
         <section
@@ -24,7 +24,9 @@ const Hero = () => {
                 className={`dark:invert z-10`}
             />
             <div className={`w-11/12 sm:w-9/12 z-10`}>
-                <SearchBar setExternalSearchTerm={setSearchTerm} />
+                <SearchBar
+                    setExternalSearchTerm={setSearchTerm}
+                />
             </div>
             <div className={`flex gap-6 px-3 z-10`}>
                 <button

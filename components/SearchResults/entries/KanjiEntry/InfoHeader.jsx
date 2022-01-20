@@ -3,7 +3,7 @@ import { MdBrush, MdOutlineSchool } from "react-icons/md";
 
 const InfoHeader = props => {
     const { grade, jlpt, stroke_count } =
-    props.data || undefined;
+        props.data || undefined;
     return (
         <div
             className={`flex flex-row text-sm border-b border-gray-300 dark:border-gray-800`}
@@ -12,10 +12,10 @@ const InfoHeader = props => {
                 <div
                     className={`flex items-center justify-center px-0.5 py-0.5 w-full text-center border-r last:border-r-0 border-gray-300 dark:border-gray-800`}
                 >
-                        <span>
-                            <MdBrush className={`inline`} />
-                            &nbsp;{stroke_count}
-                        </span>
+                    <span>
+                        <MdBrush className={`inline`} />
+                        &nbsp;{stroke_count}
+                    </span>
                 </div>
             )}
             {jlpt && (
@@ -29,9 +29,7 @@ const InfoHeader = props => {
                 <div
                     className={`flex items-center justify-center px-0.5 py-0.5 w-full text-center border-r last:border-r-0 border-gray-300 dark:border-gray-800`}
                 >
-                    <MdOutlineSchool
-                        className={`inline`}
-                    />
+                    <MdOutlineSchool className={`inline`} />
                     &nbsp;{grade}
                 </div>
             )}

@@ -1,6 +1,5 @@
 import React from "react";
 import PitchAccent from "./PitchAccent";
-import Listen from "./Listen";
 
 const Pronunciation = props => {
     const { pitch, audio } = props || undefined;

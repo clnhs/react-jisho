@@ -3,7 +3,9 @@ import React from "react";
 const PitchAccent = props => {
     const { pitch: unfilteredPitch } = props || undefined;
 
-    const pitch = unfilteredPitch.filter(pitchSegment => !!pitchSegment.part);
+    const pitch = unfilteredPitch.filter(
+        pitchSegment => !!pitchSegment.part
+    );
 
     const PitchPart = props => {
         const { accent, index } = props || undefined;
@@ -15,11 +17,21 @@ const PitchAccent = props => {
                     className={`${
                         accent.high
                             ? `pt-0.5 bg-gradient-to-b from-red-400 ${
-                                  index > 0 ? `pl-0.5 -ml-0.5` : ``
-                              } ${index < max ? `pr-0.5 -mr-0.5` : ``}`
+                                  index > 0
+                                      ? `pl-0.5 -ml-0.5`
+                                      : ``
+                              } ${
+                                  index < max
+                                      ? `pr-0.5 -mr-0.5`
+                                      : ``
+                              }`
                             : `pb-0.5 bg-gradient-to-t from-blue-400 ${
                                   index > 0 ? `pl-0.5` : ``
-                              } ${index < max ? `pr-0.5` : ``}`
+                              } ${
+                                  index < max
+                                      ? `pr-0.5`
+                                      : ``
+                              }`
                     }`}
                 >
                     <span

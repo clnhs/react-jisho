@@ -4,11 +4,7 @@ import React, {
     useRef,
     useState,
 } from "react";
-import {
-    MdImageSearch,
-    MdKeyboardVoice,
-    MdSearch,
-} from "react-icons/md";
+import { MdSearch } from "react-icons/md";
 import useEventListener from "../../hooks/useEventListener";
 import { useRouter } from "next/router";
 

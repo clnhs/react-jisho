@@ -20,19 +20,25 @@ const ReadingsTable = props => {
                     wordBreak: "keep-all",
                 }}
             >
-                    {readings &&
-                        readings.map((reading, index) => {
-                            if (index < 4)
-                                return (
-                                    <span key={index}>
-                                        {reading
-                                            .replaceAll(".", "・")
-                                            .replaceAll("-", "ー")}
-                                        <br />
-                                    </span>
-                                );
-                        })}
-                </span>
+                {readings &&
+                    readings.map((reading, index) => {
+                        if (index < 4)
+                            return (
+                                <span key={index}>
+                                    {reading
+                                        .replaceAll(
+                                            ".",
+                                            "・"
+                                        )
+                                        .replaceAll(
+                                            "-",
+                                            "ー"
+                                        )}
+                                    <br />
+                                </span>
+                            );
+                    })}
+            </span>
         </div>
     );
 };

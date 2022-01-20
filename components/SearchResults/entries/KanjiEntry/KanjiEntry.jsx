@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { MdBrush, MdOutlineSchool } from "react-icons/md";
 import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialog";
 import ReadingsTable from "./ReadingsTable";
 import InfoHeader from "./InfoHeader";
@@ -32,7 +31,9 @@ const KanjiEntry = props => {
             className={`kanji group flex flex-col flex-nowrap rounded-lg overflow-hidden box-content border-[1px] border-gray-200 hover:border-blue-300 w-full sm:w-48 bg-white dark:bg-gray-700 hover:bg-blue-300/20 border-black/10 dark:border-black/30 hover:shadow-sm hover:shadow-blue-300 transition-all hover:cursor-pointer`}
             onClick={toggleExternalLookupDialog}
         >
-            <InfoHeader data={{ grade, jlpt, stroke_count }} />
+            <InfoHeader
+                data={{ grade, jlpt, stroke_count }}
+            />
             <div
                 className={`flex flex-col justify-center w-full h-full`}
             >
