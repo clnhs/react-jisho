@@ -3,7 +3,7 @@ import React from "react";
 const AboutPage = () => {
     return (
         <div
-            className={`flex w-full h-full flex-grow justify-center items-center p-8`}
+            className={`flex w-full h-full flex-grow mt-16 justify-center items-center p-8`}
         >
             <div
                 className={`flex flex-col gap-6 w-full sm:w-96`}
