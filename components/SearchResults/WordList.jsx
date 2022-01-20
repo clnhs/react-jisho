@@ -1,5 +1,5 @@
 import React from "react";
-import WordEntry from "./entries/WordEntry";
+import WordEntry from "./entries/WordEntry/WordEntry";
 
 const WordList = props => {
     const { className, words } = props || undefined;
