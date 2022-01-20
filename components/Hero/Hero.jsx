@@ -35,12 +35,12 @@ const Hero = () => {
                 >
                     Search
                 </button>
-                <button
-                    className={`px-8 py-4 bg-black hover:bg-gray-300 dark:hover:bg-white border-2 border-opacity-0 hover:border-black text-white hover:text-black rounded-lg border-gray-300 dark:border-gray-800 transition-all`}
-                    style={{ wordBreak: "keep-all" }}
-                >
-                    I&lsquo;m feeling ラッキー
-                </button>
+                {/*<button*/}
+                {/*    className={`px-8 py-4 bg-black hover:bg-gray-300 dark:hover:bg-white border-2 border-opacity-0 hover:border-black text-white hover:text-black rounded-lg border-gray-300 dark:border-gray-800 transition-all`}*/}
+                {/*    style={{ wordBreak: "keep-all" }}*/}
+                {/*>*/}
+                {/*    I&lsquo;m feeling ラッキー*/}
+                {/*</button>*/}
             </div>
         </section>
     );
