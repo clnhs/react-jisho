@@ -85,7 +85,9 @@ const WordEntry = props => {
                                 />
                             );
                     return (
-                        <span key={"no-ruby-" + char}>
+                        <span
+                            key={index + "no-ruby-" + char}
+                        >
                             {char}
                         </span>
                     );
@@ -150,11 +152,13 @@ const WordEntry = props => {
                     {posBlocks.join(", ")}
                 </div>
                 <ol className={`pl-8 text-lg list-decimal`}>
-                    {glossBlocks.map((glossBlock,index) => (
-                        <li key={`gloss-${index}`}>
-                            {glossBlock}
-                        </li>
-                    ))}
+                    {glossBlocks.map(
+                        (glossBlock, index) => (
+                            <li key={`gloss-${index}`}>
+                                {glossBlock}
+                            </li>
+                        )
+                    )}
                 </ol>
             </>
         );
@@ -162,7 +166,7 @@ const WordEntry = props => {
 
     return (
         <div
-            className={`group first:mt-0 p-0.5 rounded-lg overflow-hidden hover:shadow-sm hover:shadow-blue-300 hover:bg-blue-300 hover:cursor-pointer transition-all ${
+            className={`group first:mt-0 p-[1px] rounded-lg overflow-hidden hover:shadow-sm hover:shadow-blue-300 hover:bg-blue-300 hover:cursor-pointer transition-all ${
                 common
                     ? `bg-gradient-to-br from-green-500 group-hover:to-blue-300`
                     : "bg-gradient-to-r from-black/10 dark:from-black/40"
@@ -215,7 +219,10 @@ const WordEntry = props => {
                         <div
                             className={`grid grid-cols-12 gap-2`}
                         >
-                            <Pronunciation pitch={pitch} audio={audio}/>
+                            <Pronunciation
+                                pitch={pitch}
+                                audio={audio}
+                            />
                             <div
                                 className={`flex flex-col col-span-9`}
                             >

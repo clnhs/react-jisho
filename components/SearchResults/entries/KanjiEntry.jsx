@@ -99,7 +99,7 @@ const KanjiEntry = props => {
 
     return (
         <div
-            className={`kanji group flex flex-col flex-nowrap rounded-lg overflow-hidden box-content border-2 border-gray-200 hover:border-blue-300 w-48 bg-white dark:bg-gray-700 hover:bg-blue-300/20 border-black/10 dark:border-black/30 hover:shadow-sm hover:shadow-blue-300 transition-all hover:cursor-pointer`}
+            className={`kanji group flex flex-col flex-nowrap rounded-lg overflow-hidden box-content border-[1px] border-gray-200 hover:border-blue-300 w-full sm:w-48 bg-white dark:bg-gray-700 hover:bg-blue-300/20 border-black/10 dark:border-black/30 hover:shadow-sm hover:shadow-blue-300 transition-all hover:cursor-pointer`}
             onClick={toggleExternalLookupDialog}
         >
             <Data data={{ grade, jlpt, stroke_count }} />
@@ -107,12 +107,12 @@ const KanjiEntry = props => {
                 <div
                     className={`flex flex-col items-center justify-center w-full h-24 mb-2 text-center text-7xl overflow-hidden`}
                 >
-                    <span className={`kyoka-on-hover jp`}>
+                    <span className={`jp kyoka-on-hover`}>
                         {literal}
                     </span>
                 </div>
                 <span
-                    className={`block w-full text-center overflow-hidden text-ellipsis`}
+                    className={`block w-full text-center overflow-hidden text-ellipsis px-1`}
                 >
                     {Array.isArray(meanings) ? meanings.join(", ") : meanings}
                 </span>
