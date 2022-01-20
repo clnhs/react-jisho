@@ -1,13 +1,4 @@
 import React from "react";
-import Head from "next/head";
-import Link from "next/link";
-import {
-    MdHelpOutline,
-    MdImageSearch,
-    MdKeyboardVoice,
-    MdNotifications,
-    MdSettings,
-} from "react-icons/md";
 import Hero from "../components/Hero/Hero";
 
 const IndexPage = () => {
