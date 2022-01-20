@@ -10,13 +10,9 @@ export const parsePos = part => {
             partsOfSpeech.push(part.Verb + " verb");
         else if (part.Verb.hasOwnProperty("Godan")) {
             partsOfSpeech.push(`Godan verb`);
-        } else if (
-            part.Verb.hasOwnProperty("Irregular")
-        ) {
+        } else if (part.Verb.hasOwnProperty("Irregular")) {
             if (part.Verb.Irregular === "NounOrAuxSuru")
-                partsOfSpeech.push(
-                    `Irregular 〜する verb`
-                );
+                partsOfSpeech.push(`Irregular 〜する verb`);
         }
     } else if (part.hasOwnProperty("Noun")) {
         if (part.Noun === "Normal")
@@ -26,7 +22,9 @@ export const parsePos = part => {
                 part.Noun.toLowerCase() + " noun"
             );
     } else if (part.hasOwnProperty("Adjective"))
-        partsOfSpeech.push(`${part.Adjective} adj.`);
+        if (part.Adjective === "PreNounVerb")
+            partsOfSpeech.push(`Pre-noun/verb adj.`);
+        else partsOfSpeech.push(`${part.Adjective} adj.`);
     else partsOfSpeech.push(JSON.stringify(part.Verb));
 
     return partsOfSpeech;
