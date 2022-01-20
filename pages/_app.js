@@ -7,7 +7,7 @@ const MyApp = ({Component, pageProps}) => {
         <>
             <Head>
                 <title>React辞書</title>
-                <link rel="icon" type="image/x-icon" ref="/favico.ico"/>
+                <link rel="icon" type="image/x-icon" href="/favico.ico"/>
                 <link rel="icon" type="image/png" href="/favico.png"/>
                 <link rel="apple-touch-icon" href="/favico-apple.png"/>
                 <link rel="apple-touch-startup-image" href="/launch.png"/>
