@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import PitchAccent from "../../Pronunciation/PitchAccent";
 import ExternalLookupDialog from "../ExternalLookupDialog/ExternalLookupDialog";
-import { MdPlayCircle } from "react-icons/md";
 import Pronunciation from "../../Pronunciation/Pronunciation";
 
 const WordEntry = props => {
