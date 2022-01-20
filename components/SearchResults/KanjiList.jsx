@@ -1,5 +1,5 @@
 import React from "react";
-import KanjiEntry from "./entries/KanjiEntry";
+import KanjiEntry from "./entries/KanjiEntry/KanjiEntry";
 
 const KanjiList = (props) => {
     const {className, kanji} = props || undefined;
