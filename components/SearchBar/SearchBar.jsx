@@ -73,24 +73,24 @@ const SearchBar = props => {
                 onChange={inputChangeHandler}
             />
             <div className={`flex justify-center`}>
-                <button
-                    className={`block px-4 py-2 ${
-                        navbarEmbed
-                            ? "text-2xl"
-                            : "text-2xl sm:text-3xl"
-                    } hover:bg-gray-300 dark:hover:bg-gray-800`}
-                >
-                    <MdKeyboardVoice />
-                </button>
-                <button
-                    className={`block px-4 py-2 ${
-                        navbarEmbed
-                            ? "text-2xl"
-                            : "text-2xl sm:text-3xl"
-                    } hover:bg-gray-300 dark:hover:bg-gray-800`}
-                >
-                    <MdImageSearch />
-                </button>
+                {/*<button*/}
+                {/*    className={`block px-4 py-2 ${*/}
+                {/*        navbarEmbed*/}
+                {/*            ? "text-2xl"*/}
+                {/*            : "text-2xl sm:text-3xl"*/}
+                {/*    } hover:bg-gray-300 dark:hover:bg-gray-800`}*/}
+                {/*>*/}
+                {/*    <MdKeyboardVoice />*/}
+                {/*</button>*/}
+                {/*<button*/}
+                {/*    className={`block px-4 py-2 ${*/}
+                {/*        navbarEmbed*/}
+                {/*            ? "text-2xl"*/}
+                {/*            : "text-2xl sm:text-3xl"*/}
+                {/*    } hover:bg-gray-300 dark:hover:bg-gray-800`}*/}
+                {/*>*/}
+                {/*    <MdImageSearch />*/}
+                {/*</button>*/}
                 {navbarEmbed && (
                     <button
                         className={`block px-4 py-2 ${
