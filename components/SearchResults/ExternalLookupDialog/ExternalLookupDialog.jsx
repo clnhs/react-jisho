@@ -52,7 +52,7 @@ const ExternalLookupDialog = props => {
                                 />
                                 <ExternalLookupButton
                                     iconPath={
-                                        "/jisho_org.ico"
+                                        "/jisho_org.png"
                                     }
                                     text={"Jisho.org"}
                                     target={`https://jisho.org/search/${term}`}
@@ -63,6 +63,27 @@ const ExternalLookupDialog = props => {
                                     }
                                     text={"jpdb.io"}
                                     target={`https://jpdb.io/search?q=${term}`}
+                                />
+                                <ExternalLookupButton
+                                    iconPath={
+                                        "/kotobank.png"
+                                    }
+                                    text={"Kotobank"}
+                                    target={`https://kotobank.jp/word/${term}`}
+                                />
+                                <ExternalLookupButton
+                                    iconPath={
+                                        "/weblio-ejje.png"
+                                    }
+                                    text={"Weblio EJJE"}
+                                    target={`https://ejje.weblio.jp/content/${term}`}
+                                />
+                                <ExternalLookupButton
+                                    iconPath={
+                                        "/alc.png"
+                                    }
+                                    text={"ALC"}
+                                    target={`https://eow.alc.co.jp/search?q=${term}`}
                                 />
                                 {typeof window !==
                                     "undefined" &&
