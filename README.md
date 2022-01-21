@@ -2,8 +2,18 @@
 
 # React Jisho
 
-React Jisho is meant as a portfolio project by @clnhs aiming to be a Japanese dictionary for quick reference and as gateway towards other resources. It is currently built on the API provided by the open-source project [Jotoba](https://github.com/WeDontPanic/Jotoba), which highly facilitates integration of the most common free
-Japanese learning resources.
+React Jisho is meant as a portfolio project by @clnhs. Its purpose is to be a Japanese dictionary for quick reference and as gateway towards other resources. It is currently built on the API provided by the open-source project [Jotoba](https://github.com/WeDontPanic/Jotoba), which highly facilitates the integration of the most common free
+Japanese learning resources, namely JMdic, KanjiDic, as well as parts of the Tatoeba Project.
+
+For future improvements, bug reports (oops) and general feedback (thanks!), the Issues section is open to all.
+
+The webapp is currently deployed at Vercel under the subdomain [https://react-jisho.vercel.app/](https://react-jisho.vercel.app/).
+
+## Repository Branches
+We have three main branches on this project:
+1. `dev`, for, well, development work;
+2. `main`, which holds the latest stable version;
+4. `prod`, which is watched by Vercel for automated build & deployment;
 
 ## Stack
 
