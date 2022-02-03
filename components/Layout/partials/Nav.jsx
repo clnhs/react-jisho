@@ -11,7 +11,8 @@ const Nav = props => {
 
     return (
         <nav
-            className={`grid grid-cols-4 md:grid-cols-12 sticky top-0 z-10 justify-between w-full h-16 box-content ${
+            id={"nav"}
+            className={`grid grid-cols-4 md:grid-cols-12 justify-between ${
                 !isOnHome
                     ? "bg-gray-100 dark:bg-gray-700 dark:backdrop-blur-2xl dark:bg-opacity-70 border-b border-black/10 dark:border-gray-800 dark:drop-shadow-lg"
                     : ""

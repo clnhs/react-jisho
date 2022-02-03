@@ -5,11 +5,12 @@ import Footer from "./partials/Footer";
 const Layout = props => {
     return (
         <div
-            className={`flex flex-col justify-between w-full h-screen items-center bg-gray-100 dark:bg-gray-700 dark:text-white overflow-hidden`}
+            id={"layout-container"}
+            className={`flex flex-col justify-between items-center bg-gray-100 dark:bg-gray-700 dark:text-white`}
         >
             <Nav />
             <div
-                className={`w-full h-full overflow-y-scroll`}
+                id={"contents"}
             >
                 {props.children}
             </div>
