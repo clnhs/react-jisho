@@ -28,3 +28,21 @@ html, body {
         @apply pt-3 kyoka;
     }
 }
+
+#layout-container{
+    @apply w-full h-screen;
+}
+
+#nav{
+    @apply z-10 w-full h-16 box-content;
+    position: fixed;
+    top: 0;
+    top: env(safe-area-inset-top);
+}
+
+#footer {
+    @apply z-10 w-full;
+    position: fixed;
+    bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+}
