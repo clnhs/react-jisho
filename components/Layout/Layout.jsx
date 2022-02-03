@@ -4,10 +4,7 @@ import Footer from "./partials/Footer";
 
 const Layout = props => {
     return (
-        <div
-            id={"layout-container"}
-            className={`flex flex-col justify-between items-center bg-gray-100 dark:bg-gray-700 dark:text-white`}
-        >
+        <>
             <Nav />
             <div
                 id={"contents"}
@@ -15,7 +12,7 @@ const Layout = props => {
                 {props.children}
             </div>
             <Footer />
-        </div>
+        </>
     );
 };
 

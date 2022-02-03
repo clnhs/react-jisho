@@ -34,7 +34,7 @@ const SearchResultsPage = () => {
                 !jotobaIsLoading &&
                 !jotobaHasError && (
                     <div
-                        className={`flex flex-col items-center justify-center w-screen p-4`}
+                        className={`flex flex-col items-center justify-center w-screen h-auto p-4`}
                     >
                         <div
                             className={`grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 w-full justify-center`}

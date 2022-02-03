@@ -4,14 +4,34 @@
 @tailwind components;
 @tailwind utilities;
 
+$footerHeight: 2.2rem;
 
 html, body {
     background: black;
-    @apply overflow-hidden;
+}
+
+body{
+    @apply w-screen min-h-screen overflow-y-scroll;
+    @apply bg-gray-100 dark:bg-gray-700 dark:text-white;
 }
 
 * {
     font-family: "Noto Sans", sans-serif;
+}
+
+#nav{
+    @apply z-10 w-full h-16 box-content fixed top-0;
+}
+
+#contents{
+    @apply w-full h-max pt-16;
+    padding-bottom: calc($footerHeight + env(safe-area-inset-bottom))
+}
+
+#footer {
+    @apply z-10 w-full bottom-0 fixed;
+    height: $footerHeight;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .jp {
@@ -22,34 +42,9 @@ html, body {
     font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium", sans-serif;
 }
 
-
 .kanji:hover {
     .kyoka-on-hover {
         font-weight: normal;
         @apply pt-3 kyoka;
     }
-}
-
-#layout-container{
-    @apply w-full h-screen overflow-hidden;
-}
-
-#contents{
-    @apply w-full h-full overflow-y-scroll;
-    padding-top: 4rem;
-    padding-bottom: calc(6rem + env(safe-area-inset-bottom));
-}
-
-#nav{
-    @apply z-10 w-full h-16 box-content;
-    position: fixed;
-    top: 0;
-    top: env(safe-area-inset-top);
-}
-
-#footer {
-    @apply z-10 w-full;
-    position: fixed;
-    bottom: 0;
-    padding-bottom: env(safe-area-inset-bottom);
 }
