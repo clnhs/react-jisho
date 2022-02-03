@@ -14,7 +14,7 @@ const Nav = props => {
             id={"nav"}
             className={`grid grid-cols-4 md:grid-cols-12 justify-between ${
                 !isOnHome
-                    ? "bg-gray-100 dark:bg-gray-700 dark:backdrop-blur-2xl dark:bg-opacity-70 border-b border-black/10 dark:border-gray-800 dark:drop-shadow-lg"
+                    ? "bg-gray-100 dark:bg-gray-700 backdrop-blur-2xl bg-opacity-70 border-b border-black/10 dark:border-gray-800 dark:drop-shadow-lg"
                     : ""
             }`}
         >
