@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import useMediaQueries from "../../hooks/useMediaQueries";
 
 const Hero = () => {
     const router = useRouter();
@@ -12,23 +13,28 @@ const Hero = () => {
             router.push(`/search/${searchTerm}`);
     };
 
+    const isMobileLandscape = useMediaQueries(["hover: none", "pointer: coarse", "orientation: landscape"]).size === 3;
+
     return (
         <section
             id={"hero"}
-            className={`flex flex-col gap-12 flex-nowrap w-full h-full justify-center items-center`}
+            className={`flex flex-col flex-nowrap items-center justify-center ${isMobileLandscape ? "gap-0 -mt-16": `gap-12`}`}
         >
-            <Image
-                src="/logo.svg"
-                width={502 / 1.2}
-                height={152 / 1.2}
-                className={`dark:invert z-10`}
-            />
-            <div className={`w-11/12 sm:w-9/12 z-10`}>
+            <div className={`scale-75 md:scale-100`}>
+                <Image
+                    src="/logo.svg"
+                    width={502}
+                    height={152}
+                    className={`dark:invert`}
+                />
+            </div>
+            <div className={`w-11/12 sm:w-9/12`}>
                 <SearchBar
+                    embedSearchButton={isMobileLandscape}
                     setExternalSearchTerm={setSearchTerm}
                 />
             </div>
-            <div className={`flex gap-6 px-3 z-10`}>
+            {!isMobileLandscape && <div className={`flex gap-6 px-3`}>
                 <button
                     className={`px-8 py-4 bg-black hover:bg-gray-300 dark:hover:bg-white border-2 border-opacity-0 hover:border-black text-white hover:text-black rounded-lg border-gray-300 dark:border-gray-800 transition-all`}
                     onClick={submitHandler}
@@ -41,7 +47,7 @@ const Hero = () => {
                 {/*>*/}
                 {/*    I&lsquo;m feeling ラッキー*/}
                 {/*</button>*/}
-            </div>
+            </div>}
         </section>
     );
 };
