@@ -47,7 +47,7 @@ const KanjiEntry = props => {
                     </span>
                     </div>
                     <span
-                        className={`block w-full text-center overflow-hidden text-ellipsis px-1`}
+                        className={`block w-full text-center overflow-hidden text-ellipsis px-1 mb-2`}
                     >
                     {Array.isArray(meanings)
                         ? meanings.join(", ")
