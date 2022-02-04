@@ -4,13 +4,42 @@
 @tailwind components;
 @tailwind utilities;
 
+$navbarHeight: 4rem;
+$footerHeight: 2.5rem;
 
 html, body {
     background: black;
 }
 
+body{
+    @apply w-screen min-h-screen overflow-y-scroll;
+    @apply bg-gray-100 dark:bg-gray-700 dark:text-white;
+}
+
 * {
     font-family: "Noto Sans", sans-serif;
+}
+
+#nav{
+    @apply z-10 w-full box-content fixed top-0;
+    height: $navbarHeight;
+}
+
+#contents{
+    @apply w-full;
+    padding-top: calc($navbarHeight + env(safe-area-inset-top));
+    padding-bottom: calc($footerHeight + env(safe-area-inset-bottom))
+}
+
+#hero, #loader-container{
+    width: 100vw;
+    height: calc(100vh - $navbarHeight - $footerHeight);
+}
+
+#footer {
+    @apply z-10 w-full bottom-0 fixed;
+    height: $footerHeight;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .jp {
@@ -20,7 +49,6 @@ html, body {
 .kyoka {
     font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium", sans-serif;
 }
-
 
 .kanji:hover {
     .kyoka-on-hover {

@@ -34,7 +34,7 @@ const SearchResultsPage = () => {
                 !jotobaIsLoading &&
                 !jotobaHasError && (
                     <div
-                        className={`flex flex-col items-center justify-center w-screen p-4`}
+                        className={`flex flex-col items-center justify-center w-screen h-auto p-4`}
                     >
                         <div
                             className={`grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 w-full justify-center`}
@@ -52,7 +52,8 @@ const SearchResultsPage = () => {
                     </div>
                 )}
             {jotobaIsLoading && <div
-                className={`flex flex-col items-center justify-center w-full h-full`}
+                id={"loader-container"}
+                className={`flex flex-col items-center justify-center`}
             >
                 <div
                     className={`flex flex-col items-center`}>
@@ -64,6 +65,7 @@ const SearchResultsPage = () => {
                 !!!jotobaHasError &&
                 results === null && (
                     <div
+                        id={"loader-container"}
                         className={`flex flex-col items-center justify-center w-full h-full`}
                     >
                         <div
@@ -77,6 +79,7 @@ const SearchResultsPage = () => {
             }
             {!jotobaIsLoading && jotobaHasError && (
                 <div
+                    id={"loader-container"}
                     className={`flex flex-col items-center justify-center w-full h-full`}
                 >
                     <div

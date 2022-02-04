@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useMediaQueries from "../../../hooks/useMediaQueries";
 
 const Footer = () => {
+
     return (
         <footer
-            className={`z-10 flex flex-col flex-nowrap shrink-0 w-full text-xs py-0.5 sm:p-1 justify-center items-center text-white bg-black dark:bg-gray-800`}
+            id={"footer"}
+            className={`flex flex-col flex-nowrap shrink-0 text-xs py-0.5 sm:p-1 justify-center items-center text-white bg-black dark:bg-gray-800`}
         >
             <p>
                 Built by @clnhs. Based on API from{" "}
