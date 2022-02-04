@@ -11,9 +11,9 @@ import { useRouter } from "next/router";
 const SearchBar = props => {
     const inputRef = useRef();
     const router = useRouter();
-    const { navbarEmbed, placeholder } = props || undefined;
+    const { embedSearchButton, navbarEmbed, placeholder } = props || undefined;
     const [searchTerm, setSearchTerm] = useState(
-        router.query.query || ""
+        router.query.query || "",
     );
 
     const inputChangeHandler = e => {
@@ -21,24 +21,15 @@ const SearchBar = props => {
             setSearchTerm(inputRef.current.value);
             if (props.setExternalSearchTerm)
                 props.setExternalSearchTerm(
-                    inputRef.current.value
+                    inputRef.current.value,
                 );
         }
     };
 
     const submitHandler = () => {
-        if (searchTerm) {
-            console.log(`Sending query for ${searchTerm}`);
+        if (searchTerm)
             router.push(`/search/${searchTerm}`);
-        } else
-            console.log(
-                `No query sent for search term ${searchTerm},(${typeof searchTerm})`
-            );
     };
-
-    useEffect(() => {
-        console.log(searchTerm);
-    }, [searchTerm]);
 
     useEventListener(
         "keydown",
@@ -47,9 +38,9 @@ const SearchBar = props => {
                 if (!e.isComposing)
                     e.code === "Enter" && submitHandler();
             },
-            [submitHandler]
+            [submitHandler],
         ),
-        inputRef.current
+        inputRef.current,
     );
 
     return (
@@ -87,7 +78,7 @@ const SearchBar = props => {
                 {/*>*/}
                 {/*    <MdImageSearch />*/}
                 {/*</button>*/}
-                {navbarEmbed && (
+                {navbarEmbed || embedSearchButton && (
                     <button
                         className={`block px-4 py-2 ${
                             navbarEmbed

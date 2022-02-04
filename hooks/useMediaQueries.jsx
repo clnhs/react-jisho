@@ -1,33 +1,57 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const useMediaQueries = (queries) => {
+/**
+ * Hook for matching media queries
+ *
+ * @param {Array<string>} queries - List of queries (without parentheses)
+ * @param {string} matchType - "all" returns all queries that matched **(default)**
+ * @returns {Set<string> || string} active match or matches
+ */
+const useMediaQueries = (queries, matchType = "all") => {
     const isClientSide = globalThis !== undefined;
-    const [activeMediaQuery, setActiveMediaQuery] = useState();
 
-    const storedWatchedMediaQueries = useRef();
-    const listeners = [];
+    const storedWatchedMediaQueriesLists = [];
 
-    const changeHandler = (e) => {
-        e.matches && console.log(storedWatchedMediaQueries.find());
+    // We don't take in parameters because we go through all
+    //  mediaQueryLists to check for changes
+    const updateActiveMediaQueries = () => {
+        console.log(`updateActiveMediaQueries`);
+        storedWatchedMediaQueriesLists.forEach(mql => {
+            const media = mql.media.replace(/\(|\)/g, "");
+
+            if (mql.matches)
+                setActiveMediaQueries(prevState => {
+                    const newState = new Set([...prevState.values()]);
+                    newState.add(media);
+                    return newState;
+                });
+            else
+                setActiveMediaQueries(prevState => {
+                    const newState = new Set([...prevState.values()]);
+                    newState.delete(media);
+                    return newState;
+                });
+        });
     };
 
-    useEffect(() => {
-        storedWatchedMediaQueries.current = queries.map(q => ({
-            mediaQuery: globalThis.matchMedia(q.media),
-            pref: q.pref,
-        }));
-    }, [queries]);
+    const [activeMediaQueries, setActiveMediaQueries] = useState(new Set());
 
     useEffect(() => {
-        if (!isClientSide) return;
+        const changeHandler = (e) => updateActiveMediaQueries();
 
-        listeners.push(...storedWatchedMediaQueries.current.map(mq => {
-            mq.mediaQuery.addEventListener("change", changeHandler);
-        }));
+        // Store MediaQueryLists made of the passed in queries.
+        storedWatchedMediaQueriesLists.push(...queries.map(q => globalThis.matchMedia(`(${q})`)));
 
-    }, []);
+        updateActiveMediaQueries();
 
-    return { activeMediaQuery };
+        // Add event listeners
+        storedWatchedMediaQueriesLists.forEach(mql => mql.addEventListener("change", changeHandler));
+
+        // Remove event listeners on dismount
+        return () => storedWatchedMediaQueriesLists.forEach(mql => mql.removeEventListener("change", changeHandler));
+    }, [setActiveMediaQueries]);
+
+    return activeMediaQueries;
 };
 
 export default useMediaQueries;

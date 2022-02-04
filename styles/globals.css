@@ -4,7 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-$footerHeight: 2.2rem;
+$navbarHeight: 4rem;
+$footerHeight: 2.5rem;
 
 html, body {
     background: black;
@@ -20,12 +21,19 @@ body{
 }
 
 #nav{
-    @apply z-10 w-full h-16 box-content fixed top-0;
+    @apply z-10 w-full box-content fixed top-0;
+    height: $navbarHeight;
 }
 
 #contents{
-    @apply w-full h-max pt-16;
+    @apply w-full;
+    padding-top: calc($navbarHeight + env(safe-area-inset-top));
     padding-bottom: calc($footerHeight + env(safe-area-inset-bottom))
+}
+
+#hero{
+    width: 100vw;
+    height: calc(100vh - $navbarHeight - $footerHeight);
 }
 
 #footer {
