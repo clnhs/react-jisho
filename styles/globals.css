@@ -31,7 +31,7 @@ body{
     padding-bottom: calc($footerHeight + env(safe-area-inset-bottom))
 }
 
-#hero{
+#hero, #loader-container{
     width: 100vw;
     height: calc(100vh - $navbarHeight - $footerHeight);
 }

@@ -52,7 +52,8 @@ const SearchResultsPage = () => {
                     </div>
                 )}
             {jotobaIsLoading && <div
-                className={`flex flex-col items-center justify-center w-full h-full`}
+                id={"loader-container"}
+                className={`flex flex-col items-center justify-center`}
             >
                 <div
                     className={`flex flex-col items-center`}>
@@ -64,6 +65,7 @@ const SearchResultsPage = () => {
                 !!!jotobaHasError &&
                 results === null && (
                     <div
+                        id={"loader-container"}
                         className={`flex flex-col items-center justify-center w-full h-full`}
                     >
                         <div
@@ -77,6 +79,7 @@ const SearchResultsPage = () => {
             }
             {!jotobaIsLoading && jotobaHasError && (
                 <div
+                    id={"loader-container"}
                     className={`flex flex-col items-center justify-center w-full h-full`}
                 >
                     <div
