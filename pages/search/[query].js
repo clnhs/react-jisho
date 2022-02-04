@@ -21,10 +21,6 @@ const SearchResultsPage = () => {
         query && getJotobaResults(query, setResults);
     }, [query]);
 
-    useEffect(() => {
-        console.log(results);
-    }, [results]);
-
     return (
         <>
             <Head>
