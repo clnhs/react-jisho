@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import useMediaQueries from "../../hooks/useMediaQueries";
+import useMatchMedia from "../../hooks/useMatchMedia";
 
 const Hero = () => {
     const router = useRouter();
@@ -13,12 +13,12 @@ const Hero = () => {
             router.push(`/search/${searchTerm}`);
     };
 
-    const isMobileLandscape = useMediaQueries(["hover: none", "pointer: coarse", "orientation: landscape"]).size === 3;
+    const isMobileLandscape = useMatchMedia(["hover: none", "pointer: coarse", "orientation: landscape"], "all");
 
     return (
         <section
             id={"hero"}
-            className={`flex flex-col flex-nowrap items-center justify-center ${isMobileLandscape ? "gap-0 -mt-16": `gap-12`}`}
+            className={`flex flex-col flex-nowrap items-center justify-center ${isMobileLandscape ? "gap-0 -mt-16" : `gap-12`}`}
         >
             <div className={`scale-75 md:scale-100`}>
                 <Image
