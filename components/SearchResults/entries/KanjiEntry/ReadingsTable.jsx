@@ -5,10 +5,10 @@ const ReadingsTable = props => {
 
     return (
         <div
-            className={`flex flex-col flex-nowrap items-center justify-start w-full border-t first:border-r border-gray-300 dark:border-gray-800`}
+            className={`flex flex-col flex-nowrap items-center justify-start w-full border-t first:border-r border-gray-200 dark:border-gray-800`}
         >
             <div
-                className={`w-full py-0.5 text-center text-sm border-b border-gray-300 dark:border-gray-800`}
+                className={`w-full py-0.5 text-center text-sm border-b border-gray-200 dark:border-gray-800`}
             >
                 {type === "kunyomi" && "KUN"}
                 {type === "onyomi" && "ON"}

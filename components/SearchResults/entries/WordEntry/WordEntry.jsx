@@ -3,10 +3,11 @@ import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialo
 import Pronunciation from "../../../Pronunciation/Pronunciation";
 import SenseBlock from "./SenseBlock";
 import RubyText from "./RubyText/RubyText";
+import Card from "../../../UI/Card";
 
 const WordEntry = props => {
     const { reading, common, senses, audio, pitch } =
-        props.word || undefined;
+    props.word || undefined;
 
     const [
         externalLookupDialogIsOpen,
@@ -17,16 +18,16 @@ const WordEntry = props => {
         setExternalLookupDialogIsOpen(prev => !prev);
 
     return (
-        <div
-            className={`group first:mt-0 p-[1px] rounded-lg overflow-hidden hover:shadow-sm hover:shadow-blue-300 hover:bg-blue-300 hover:cursor-pointer transition-all ${
+        <Card
+            className={`${
                 common
-                    ? `bg-gradient-to-br from-green-500 group-hover:to-blue-300`
-                    : "bg-gradient-to-r from-black/10 dark:from-black/40"
+                    ? `bg-gradient-to-br from-green-500 to-black/10 dark:to-black/40 group-hover:to-blue-300`
+                    : "bg-black/10 dark:bg-black/40"
             }`}
             onClick={toggleExternalLookupDialog}
         >
             <div
-                className={`relative grid grid-cols-2 rounded-md overflow-hidden border-2 border-transparent w-full bg-white dark:bg-gray-700 group-hover:bg-opacity-80 transition-all`}
+                className={`relative grid grid-cols-2`}
                 style={{
                     gridTemplateColumns: `min-content 1fr`,
                 }}
@@ -84,7 +85,7 @@ const WordEntry = props => {
                                             key={index}
                                             sense={sense}
                                         />
-                                    )
+                                    ),
                                 )}
                             </div>
                         </div>
@@ -95,7 +96,7 @@ const WordEntry = props => {
                     data={{ reading }}
                 />
             </div>
-        </div>
+        </Card>
     );
 };
 
