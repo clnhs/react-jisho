@@ -18,7 +18,6 @@ const useFetch = baseUrl => {
                 if (config.method === "GET")
                     res = await fetch(rqUrl);
                 else if (config.method !== "GET") {
-                    console.log(config.bodyData);
                     res = await fetch(rqUrl, {
                         method: config.method,
                         mode: "cors",

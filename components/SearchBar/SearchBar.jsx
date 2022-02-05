@@ -7,14 +7,13 @@ import React, {
 import { MdSearch } from "react-icons/md";
 import useEventListener from "../../hooks/useEventListener";
 import { useRouter } from "next/router";
+import { IoMdClose } from "react-icons/io";
 
 const SearchBar = props => {
     const inputRef = useRef();
     const router = useRouter();
     const { embedSearchButton, navbarEmbed, placeholder } = props || undefined;
-    const [searchTerm, setSearchTerm] = useState(
-        router.query.query || "",
-    );
+    const [searchTerm, setSearchTerm] = useState("");
 
     const inputChangeHandler = e => {
         if (!e.isComposing) {
@@ -26,10 +25,20 @@ const SearchBar = props => {
         }
     };
 
+    const deleteSearchTermHandler = e => {
+        setSearchTerm("");
+    };
+
     const submitHandler = () => {
         if (searchTerm)
             router.push(`/search/${searchTerm}`);
     };
+
+    useEffect(() => {
+        if (router.query.query)
+            setSearchTerm(router.query.query);
+
+    }, [router.query]);
 
     useEventListener(
         "keydown",
@@ -78,6 +87,17 @@ const SearchBar = props => {
                 {/*>*/}
                 {/*    <MdImageSearch />*/}
                 {/*</button>*/}
+                {searchTerm.length > 0 && (
+                    <button className={`block px-4 py-2 ${
+                        navbarEmbed
+                            ? "text-2xl"
+                            : "text-2xl sm:text-3xl"
+                    } hover:bg-gray-300 dark:hover:bg-gray-800`}
+                            onClick={deleteSearchTermHandler}
+                    >
+                        <IoMdClose />
+                    </button>
+                )}
                 {navbarEmbed || embedSearchButton && (
                     <button
                         className={`block px-4 py-2 ${

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialog";
 import ReadingsTable from "./ReadingsTable";
 import InfoHeader from "./InfoHeader";
+import Card from "../../../UI/Card";
 
 const KanjiEntry = props => {
     const {
@@ -27,46 +28,48 @@ const KanjiEntry = props => {
         setExternalLookupDialogIsOpen(prev => !prev);
 
     return (
-        <div
-            className={`kanji group flex flex-col flex-nowrap rounded-lg overflow-hidden box-content border-[1px] border-gray-200 hover:border-blue-300 w-full sm:w-48 bg-white dark:bg-gray-700 hover:bg-blue-300/20 border-black/10 dark:border-black/30 hover:shadow-sm hover:shadow-blue-300 transition-all hover:cursor-pointer`}
+        <Card
+            className={`sm:w-48`}
             onClick={toggleExternalLookupDialog}
         >
-            <InfoHeader
-                data={{ grade, jlpt, stroke_count }}
-            />
-            <div
-                className={`flex flex-col justify-center w-full h-full`}
-            >
+            <div className={`kanji flex flex-col flex-nowrap justify-between h-full`}>
+                <InfoHeader
+                    data={{ grade, jlpt, stroke_count }}
+                />
                 <div
-                    className={`flex flex-col items-center justify-center w-full h-24 mb-2 text-center text-7xl overflow-hidden`}
+                    className={`flex flex-col justify-center w-full`}
                 >
+                    <div
+                        className={`flex flex-col items-center justify-center w-full h-24 mb-2 text-center text-7xl overflow-hidden`}
+                    >
                     <span className={`jp kyoka-on-hover`}>
                         {literal}
                     </span>
-                </div>
-                <span
-                    className={`block w-full text-center overflow-hidden text-ellipsis px-1`}
-                >
+                    </div>
+                    <span
+                        className={`block w-full text-center overflow-hidden text-ellipsis px-1 mb-2`}
+                    >
                     {Array.isArray(meanings)
                         ? meanings.join(", ")
                         : meanings}
                 </span>
-            </div>
-            <div className={`flex justify-around w-full`}>
-                <ReadingsTable
-                    type={"kunyomi"}
-                    readings={kunyomi}
+                </div>
+                <div className={`b-0 flex justify-around w-full`}>
+                    <ReadingsTable
+                        type={"kunyomi"}
+                        readings={kunyomi}
+                    />
+                    <ReadingsTable
+                        type={"onyomi"}
+                        readings={onyomi}
+                    />
+                </div>
+                <ExternalLookupDialog
+                    open={externalLookupDialogIsOpen}
+                    data={{ literal }}
                 />
-                <ReadingsTable
-                    type={"onyomi"}
-                    readings={onyomi}
-                />
             </div>
-            <ExternalLookupDialog
-                open={externalLookupDialogIsOpen}
-                data={{ literal }}
-            />
-        </div>
+        </Card>
     );
 };
 
