@@ -8,7 +8,7 @@ const Card = (props) => {
 
     return (
         <div
-            className={`w-full box-content group first:mt-0 p-[1px] rounded-lg bg-black/10 dark:bg-black/40 ${!isTouchScreen && `hover:shadow-sm hover:shadow-blue-300 hover:bg-blue-300 hover:cursor-pointer`} transition-all` + className}
+            className={`w-full box-content group first:mt-0 p-[1px] rounded-lg ${!isTouchScreen && `hover:shadow-sm hover:shadow-blue-300 hover:bg-blue-300 hover:cursor-pointer`} transition-all bg-black/10 dark:bg-black/40 ${className}`}
             onClick={onClick}
         >
             <div

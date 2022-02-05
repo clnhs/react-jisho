@@ -21,8 +21,8 @@ const WordEntry = props => {
         <Card
             className={`${
                 common
-                    ? `bg-gradient-to-br from-green-500 to-black/10 dark:to-black/40 group-hover:to-blue-300`
-                    : "bg-black/10 dark:bg-black/40"
+                    ? `bg-gradient-to-br from-green-500 group-hover:to-blue-300`
+                    : ""
             }`}
             onClick={toggleExternalLookupDialog}
         >
