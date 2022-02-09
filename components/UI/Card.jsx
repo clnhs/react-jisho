@@ -7,7 +7,7 @@ const Card = (props) => {
 
     return (
         <div
-            className={`w-full group first:mt-0 p-[1px] rounded-lg  transition-all bg-white dark:bg-gray-700 border border-transparent dark:border-gray-800 ${className} shadow`}
+            className={`w-full group first:mt-0 p-[1px] rounded-lg  transition-all bg-white dark:bg-gray-700 dark:border dark:border-gray-800 ${className} shadow`}
             onClick={onClick}
         >
             {props.children}
