@@ -17,7 +17,7 @@ const ExternalLookupDialog = props => {
         >
             <Dialog.Portal>
                 <Dialog.Overlay
-                    className={`flex flex-row items-center justify-center fixed top-0 left-0 w-screen h-screen bg-black/70 backdrop-blur-md z-20`}
+                    className={`flex flex-row items-center justify-center fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-md z-20`}
                 >
                     <Dialog.Content
                         className={`bg-white dark:bg-gray-700 dark:text-white w-full sm:w-1/2 p-4 rounded-lg shadow-xl shadow-black/50`}
