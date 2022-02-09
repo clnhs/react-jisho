@@ -5,9 +5,9 @@ const WordList = props => {
     const { className, words } = props || undefined;
     return (
         <div className={className}>
-            {words.map(word => (
+            {words.map((word, index) => (
                 <WordEntry
-                    key={word.reading.kana}
+                    key={`${word.reading.kana}-${index}`}
                     word={word}
                 />
             ))}

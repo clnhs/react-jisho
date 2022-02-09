@@ -25,7 +25,7 @@ const SearchBar = props => {
         }
     };
 
-    const deleteSearchTermHandler = e => {
+    const searchTermDeletionHandler = e => {
         setSearchTerm("");
     };
 
@@ -93,7 +93,7 @@ const SearchBar = props => {
                             ? "text-2xl"
                             : "text-2xl sm:text-3xl"
                     } hover:bg-gray-300 dark:hover:bg-gray-800`}
-                            onClick={deleteSearchTermHandler}
+                            onClick={searchTermDeletionHandler}
                     >
                         <IoMdClose />
                     </button>

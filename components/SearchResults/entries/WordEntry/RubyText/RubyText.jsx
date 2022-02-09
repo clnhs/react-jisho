@@ -3,7 +3,7 @@ import Ruby from "./Ruby";
 import { isKanji } from "../../../../../utils/isKanji";
 
 const RubyText = props => {
-    const { text, furigana, kana } = props || undefined;
+    const { text, furigana} = props || undefined;
     const rubyParts = furigana
         .split(/\[([^\]]*)\]/)
         .filter(str => !!str);

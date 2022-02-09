@@ -3,6 +3,7 @@ import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialo
 import ReadingsTable from "./ReadingsTable";
 import InfoHeader from "./InfoHeader";
 import Card from "../../../UI/Card";
+import ResultCard from "../../ResultCard";
 
 const KanjiEntry = props => {
     const {
@@ -28,8 +29,8 @@ const KanjiEntry = props => {
         setExternalLookupDialogIsOpen(prev => !prev);
 
     return (
-        <Card
-            className={`sm:w-48`}
+        <ResultCard
+            className={`md:w-48`}
             onClick={toggleExternalLookupDialog}
         >
             <div className={`kanji flex flex-col flex-nowrap justify-between h-full`}>
@@ -69,7 +70,7 @@ const KanjiEntry = props => {
                     data={{ literal }}
                 />
             </div>
-        </Card>
+        </ResultCard>
     );
 };
 

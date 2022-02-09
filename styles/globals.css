@@ -12,8 +12,9 @@ html, body {
 }
 
 body{
-    @apply w-screen min-h-screen overflow-y-scroll;
+    @apply w-full min-h-screen overflow-y-scroll;
     @apply bg-gray-100 dark:bg-gray-700 dark:text-white;
+    min-width: 240px;
 }
 
 * {
@@ -46,13 +47,16 @@ body{
     font-family: "Noto Sans JP", sans-serif;
 }
 
+.no-word-break{
+    word-break: keep-all;
+}
+
 .kyoka {
     font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium", sans-serif;
 }
 
 .kanji:hover {
     .kyoka-on-hover {
-        font-weight: normal;
-        @apply pt-3 kyoka;
+        @apply pt-4 kyoka;
     }
 }

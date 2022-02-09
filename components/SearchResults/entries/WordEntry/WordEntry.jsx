@@ -4,10 +4,16 @@ import Pronunciation from "../../../Pronunciation/Pronunciation";
 import SenseBlock from "./SenseBlock";
 import RubyText from "./RubyText/RubyText";
 import Card from "../../../UI/Card";
+import ResultCard from "../../ResultCard";
+import { useRouter } from "next/router";
 
 const WordEntry = props => {
-    const { reading, common, senses, audio, pitch } =
-    props.word || undefined;
+    const router = useRouter();
+    const { reading,
+        common,
+        senses,
+        audio,
+        pitch } = props.word || undefined;
 
     const [
         externalLookupDialogIsOpen,
@@ -18,18 +24,18 @@ const WordEntry = props => {
         setExternalLookupDialogIsOpen(prev => !prev);
 
     return (
-        <Card
+        <ResultCard
             className={`${
                 common
-                    ? `bg-gradient-to-br from-green-500 to-black/10 dark:to-black/40 group-hover:to-blue-300`
-                    : "bg-black/10 dark:bg-black/40"
+                    ? `bg-gradient-to-br from-green-500 group-hover:to-blue-300`
+                    : ""
             }`}
-            onClick={toggleExternalLookupDialog}
+            onClick={()=>router.push(`/details/${reading.kanji||reading.kana}`)}
         >
             <div
                 className={`relative grid grid-cols-2`}
                 style={{
-                    gridTemplateColumns: `min-content 1fr`,
+                    gridTemplateColumns: `min-content minmax(0,1fr)`,
                 }}
             >
                 <div
@@ -85,7 +91,7 @@ const WordEntry = props => {
                                             key={index}
                                             sense={sense}
                                         />
-                                    ),
+                                    )
                                 )}
                             </div>
                         </div>
@@ -96,7 +102,7 @@ const WordEntry = props => {
                     data={{ reading }}
                 />
             </div>
-        </Card>
+        </ResultCard>
     );
 };
 
