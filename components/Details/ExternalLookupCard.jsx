@@ -15,7 +15,7 @@ const ExternalLookupCard = props => {
         <Card
             className={`w-fit h-fit flex flex-col items-center top-20 ${
                 (isMobile &&
-                    `fixed right-0 border-r-0 rounded-r-none`) ||
+                    `fixed right-0 border-r-0 rounded-r-none top-28`) ||
                 `fixed left-0 border-l-0 rounded-l-none`
             } shadow-lg`}
         >

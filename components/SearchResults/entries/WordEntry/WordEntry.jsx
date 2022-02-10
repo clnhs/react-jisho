@@ -30,7 +30,7 @@ const WordEntry = props => {
                     ? `bg-gradient-to-br from-green-500 group-hover:to-blue-300`
                     : ""
             }`}
-            onClick={()=>router.push(`/details/${reading.kanji||reading.kana}`)}
+            onClick={()=>router.push(`/details/word/${reading.kanji||reading.kana}`)}
         >
             <div
                 className={`relative grid grid-cols-2`}
@@ -40,7 +40,7 @@ const WordEntry = props => {
             >
                 <div
                     className={`w-6 flex justify-center items-center ${
-                        common ? `bg-green-500` : ""
+                        common ? `bg-green-500 rounded-l-md` : ""
                     }`}
                 >
                     <span

@@ -1,5 +1,5 @@
-import React from "react";
-import * as Jotoba from "../../../../utils/JotobaUtils";
+import React, { useEffect, useState } from "react";
+import useFetch from "../../../../hooks/useFetch";
 
 const SenseBlock = props => {
     const {
@@ -13,22 +13,50 @@ const SenseBlock = props => {
         <p key={index}>{gloss}</p>
     ));
 
-    const posBlocks = partsOfSpeech.map(part => {
-        return Jotoba.parsePos(part);
-    });
+    const [posBlocks, setPosBlocks] = useState([]);
+
+    const [
+        posParserIsLoading,
+        posParserHasError,
+        getParsedPos,
+    ] = useFetch("/api/pos");
+
+    useEffect(() => {
+        getParsedPos(
+            {
+                method: "POST",
+                bodyData: { partsOfSpeech: partsOfSpeech },
+            },
+            setPosBlocks
+        );
+    }, [getParsedPos, setPosBlocks]);
 
     return (
         <>
-            <div className={`text-sm font-bold`}>
-                {posBlocks.join(", ")}
-            </div>
-            <ol className={`pl-8 text-lg list-decimal`}>
-                {glossBlocks.map((glossBlock, index) => (
-                    <li key={`gloss-${index}`}>
-                        {glossBlock}
-                    </li>
-                ))}
-            </ol>
+            {posBlocks.length > 0 &&
+                !posParserIsLoading &&
+                !posParserHasError && (
+                    <>
+                        <div
+                            className={`text-sm font-bold`}
+                        >
+                            {posBlocks.join(", ")}
+                        </div>
+                        <ol
+                            className={`pl-8 text-lg list-decimal`}
+                        >
+                            {glossBlocks.map(
+                                (glossBlock, index) => (
+                                    <li
+                                        key={`gloss-${index}`}
+                                    >
+                                        {glossBlock}
+                                    </li>
+                                )
+                            )}
+                        </ol>
+                    </>
+                )}
         </>
     );
 };

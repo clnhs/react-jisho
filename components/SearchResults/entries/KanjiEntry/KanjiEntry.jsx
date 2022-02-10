@@ -4,8 +4,10 @@ import ReadingsTable from "./ReadingsTable";
 import InfoHeader from "./InfoHeader";
 import Card from "../../../UI/Card";
 import ResultCard from "../../ResultCard";
+import { useRouter } from "next/router";
 
 const KanjiEntry = props => {
+    const router = useRouter();
     const {
         literal,
         meanings,
@@ -31,7 +33,7 @@ const KanjiEntry = props => {
     return (
         <ResultCard
             className={`md:w-48`}
-            onClick={toggleExternalLookupDialog}
+            onClick={()=>router.push(`/details/kanji/${literal}`)}
         >
             <div className={`kanji flex flex-col flex-nowrap justify-between h-full`}>
                 <InfoHeader
