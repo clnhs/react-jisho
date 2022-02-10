@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import ExternalLookupButton from "../../SearchResults/ExternalLookupDialog/ExternalLookupButton";
-import { isAppleDevice } from "../../../utils/AppleDeviceDetector";
-import Card from "../../UI/Card";
+import React from "react";
+import ExternalLookupButton from "../SearchResults/ExternalLookupDialog/ExternalLookupButton";
+import { isAppleDevice } from "../../utils/AppleDeviceDetector";
+import Card from "../UI/Card";
 import { MdOpenInNew } from "react-icons/md";
 
 const ExternalLookupCard = props => {
