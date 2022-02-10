@@ -120,26 +120,52 @@ const KanjiDetails = props => {
                         </p>
                     </div>
                     <section className={`p-4`}>
-                        <p className={`font-bold`}>KUN</p>
-                        <p className={`no-word-break`}>
-                            {kunyomi
-                                .map(reading =>
-                                    reading
-                                        .replace(".", "・")
-                                        .replace("-", "ー")
-                                )
-                                .join(", ")}
-                        </p>
+                        {kunyomi && (
+                            <>
+                                <p className={`font-bold`}>
+                                    KUN
+                                </p>
+                                <p
+                                    className={`no-word-break`}
+                                >
+                                    {kunyomi
+                                        .map(reading =>
+                                            reading
+                                                .replace(
+                                                    ".",
+                                                    "・"
+                                                )
+                                                .replace(
+                                                    "-",
+                                                    "ー"
+                                                )
+                                        )
+                                        .join(", ")}
+                                </p>
+                            </>
+                        )}
                         <p className={`font-bold`}>ON</p>
-                        <p className={`no-word-break`}>
-                            {onyomi
-                                .map(reading =>
-                                    reading
-                                        .replace(".", "・")
-                                        .replace("-", "ー")
-                                )
-                                .join(", ")}
-                        </p>
+                        {onyomi && (
+                            <>
+                                <p
+                                    className={`no-word-break`}
+                                >
+                                    {onyomi
+                                        .map(reading =>
+                                            reading
+                                                .replace(
+                                                    ".",
+                                                    "・"
+                                                )
+                                                .replace(
+                                                    "-",
+                                                    "ー"
+                                                )
+                                        )
+                                        .join(", ")}
+                                </p>
+                            </>
+                        )}
                     </section>
                 </Card>
             </div>
