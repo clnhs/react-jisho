@@ -53,36 +53,42 @@ const KanjiDetails = props => {
                     <section
                         className={`grid grid-cols-1 md:grid-cols-3 p-4`}
                     >
-                        <p>
-                            <span
-                                className={`font-bold inline-block md:block`}
-                            >
-                                Radical&nbsp;
-                            </span>
+                        {radical && (
+                            <p>
+                                <span
+                                    className={`font-bold inline-block md:block`}
+                                >
+                                    Radical&nbsp;
+                                </span>
 
-                            <a
-                                href={`/details/kanji/${radical}`}
-                            >
-                                {radical}
-                            </a>
-                        </p>
-                        <p>
-                            <span
-                                className={`font-bold inline-block md:block`}
-                            >
-                                Parts&nbsp;
-                            </span>
+                                <a
+                                    href={`/details/kanji/${radical}`}
+                                >
+                                    {radical}
+                                </a>
+                            </p>
+                        )}
+                        {parts && (
+                            <p>
+                                <span
+                                    className={`font-bold inline-block md:block`}
+                                >
+                                    Parts&nbsp;
+                                </span>
 
-                            {parts.join(" ")}
-                        </p>
-                        <p>
-                            <span
-                                className={`font-bold inline-block sm:block`}
-                            >
-                                Frequency&nbsp;
-                            </span>
-                            {frequency}/2500
-                        </p>
+                                {parts.join(" ")}
+                            </p>
+                        )}
+                        {frequency && (
+                            <p>
+                                <span
+                                    className={`font-bold inline-block sm:block`}
+                                >
+                                    Frequency&nbsp;
+                                </span>
+                                {frequency}/2500
+                            </p>
+                        )}
                     </section>
                 </Card>
                 <Card>
