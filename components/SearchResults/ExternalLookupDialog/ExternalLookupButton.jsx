@@ -16,7 +16,7 @@ const ExternalLookupButton = props => {
 
     const Button = props => {
         return (
-            <button
+            <a
                 className={`flex flex-row items-center gap-1.5 px-4 py-2 rounded-md box-content bg-white dark:bg-gray-700 hover:bg-gray-300 border border-transparent hover:border-gray-300 dark:hover:border-gray-800 dark:hover:text-black transition-all`}
                 onClick={e => {
                     if (!target && onClick) onClick();
@@ -29,7 +29,7 @@ const ExternalLookupButton = props => {
                 }}
             >
                 {props.children}
-            </button>
+            </a>
         );
     };
 
