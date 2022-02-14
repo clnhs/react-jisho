@@ -1,8 +1,3 @@
-// import {
-//     simple as simplePosData,
-//     detailed as detailedPosData,
-// } from "./PartsOfSpeech.json";
-
 export const parsePos = (
     pos,
     config = {
