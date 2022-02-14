@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import useFetch from "../../../../hooks/useFetch";
 import { parsePos } from "../../../../utils/JotobaUtils";
+import useSwr from "swr";
 
 const SenseBlock = props => {
-    const [posData, setPosData] = useState({});
-    const [posDataIsLoading, posDataHasError, getPosData] =
-        useFetch("/PartsOfSpeech.json");
+    const { data: posData, error: posDataError } = useSwr(
+        "/PartsOfSpeech.json",
+        (...args) => fetch(...args).then(res => res.json())
+    );
     const {
         glosses,
         pos: partsOfSpeech,
@@ -20,45 +21,34 @@ const SenseBlock = props => {
     const [posBlocks, setPosBlocks] = useState([]);
 
     useEffect(() => {
-        getPosData({ method: "GET" }, setPosData);
-    }, [setPosData]);
-
-    useEffect(() => {
-        if (Object.entries(posData).length > 0) {
+        if (posData)
             setPosBlocks(
                 partsOfSpeech.map(pos =>
                     parsePos(pos, { posData })
                 )
             );
-        }
     }, [posData, setPosBlocks]);
 
     return (
         <>
-            {posBlocks.length > 0 &&
-                !posDataIsLoading &&
-                !posDataHasError && (
-                    <>
-                        <div
-                            className={`text-sm font-bold`}
-                        >
-                            {posBlocks.join(", ")}
-                        </div>
-                        <ol
-                            className={`pl-8 text-lg list-decimal`}
-                        >
-                            {glossBlocks.map(
-                                (glossBlock, index) => (
-                                    <li
-                                        key={`gloss-${index}`}
-                                    >
-                                        {glossBlock}
-                                    </li>
-                                )
-                            )}
-                        </ol>
-                    </>
-                )}
+            {posBlocks.length > 0 && !posDataError && (
+                <>
+                    <div className={`text-sm font-bold`}>
+                        {posBlocks.join(", ")}
+                    </div>
+                    <ol
+                        className={`pl-8 text-lg list-decimal`}
+                    >
+                        {glossBlocks.map(
+                            (glossBlock, index) => (
+                                <li key={`gloss-${index}`}>
+                                    {glossBlock}
+                                </li>
+                            )
+                        )}
+                    </ol>
+                </>
+            )}
         </>
     );
 };
