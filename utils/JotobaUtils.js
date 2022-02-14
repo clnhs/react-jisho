@@ -5,9 +5,14 @@
 
 export const parsePos = (
     pos,
-    posData,
-    config = { short: false, kana: false, lang: "en" }
+    config = {
+        short: false,
+        kana: false,
+        lang: "en",
+        posData,
+    }
 ) => {
+    const { posData } = config || undefined;
     if (posData) {
         const {
             simple: simplePosData,

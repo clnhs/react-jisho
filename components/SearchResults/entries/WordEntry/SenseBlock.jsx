@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../../../hooks/useFetch";
+import { parsePos } from "../../../../utils/JotobaUtils";
 
 const SenseBlock = props => {
+    const [posData, setPosData] = useState({});
+    const [posDataIsLoading, posDataHasError, getPosData] =
+        useFetch("/PartsOfSpeech.json");
     const {
         glosses,
         pos: partsOfSpeech,
@@ -15,27 +19,25 @@ const SenseBlock = props => {
 
     const [posBlocks, setPosBlocks] = useState([]);
 
-    const [
-        posParserIsLoading,
-        posParserHasError,
-        getParsedPos,
-    ] = useFetch("/api/pos");
+    useEffect(() => {
+        getPosData({ method: "GET" }, setPosData);
+    }, [setPosData]);
 
     useEffect(() => {
-        getParsedPos(
-            {
-                method: "POST",
-                bodyData: { partsOfSpeech: partsOfSpeech },
-            },
-            setPosBlocks
-        );
-    }, [getParsedPos, setPosBlocks]);
+        if (Object.entries(posData).length > 0) {
+            setPosBlocks(
+                partsOfSpeech.map(pos =>
+                    parsePos(pos, { posData })
+                )
+            );
+        }
+    }, [posData, setPosBlocks]);
 
     return (
         <>
             {posBlocks.length > 0 &&
-                !posParserIsLoading &&
-                !posParserHasError && (
+                !posDataIsLoading &&
+                !posDataHasError && (
                     <>
                         <div
                             className={`text-sm font-bold`}

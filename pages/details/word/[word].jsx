@@ -6,6 +6,7 @@ import useMatchMedia from "../../../hooks/useMatchMedia";
 import ExternalLookupCard from "../../../components/Details/ExternalLookupCard";
 import useEventListener from "../../../hooks/useEventListener";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 import {
     MdErrorOutline,
     MdHelpOutline,
@@ -152,5 +153,4 @@ const WordDetailsPage = () => {
         </>
     );
 };
-
 export default WordDetailsPage;
