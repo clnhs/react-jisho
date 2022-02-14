@@ -57,8 +57,7 @@ const ExternalLookupCard = props => {
                         tooltipSide={"left"}
                         target={`https://eow.alc.co.jp/search?q=${searchTerm}`}
                     />
-                    {typeof window !== "undefined" &&
-                        isAppleDevice && (
+                    {isAppleDevice() && (
                             <ExternalLookupButton
                                 iconPath={
                                     "/monokakido_dictionaries.jpeg"
