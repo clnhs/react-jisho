@@ -45,7 +45,7 @@ const RubyText = props => {
                             />
                         );
                 return (
-                    <span key={index + "no-ruby-" + char}>
+                    <span key={`no-ruby-${char}-${index}`}>
                         {char}
                     </span>
                 );
