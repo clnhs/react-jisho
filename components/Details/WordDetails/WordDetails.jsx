@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ExternalLookupCard from "../ExternalLookupCard";
 import Card from "../../UI/Card";
-import RubyText from "../../SearchResults/entries/WordEntry/RubyText/RubyText";
+import RubyText from "../../UI/RubyText/RubyText";
 import Pronunciation from "../../Pronunciation/Pronunciation";
 import SenseBlock from "../../SearchResults/entries/WordEntry/SenseBlock";
 import SentencesCard from "./SentencesCard";

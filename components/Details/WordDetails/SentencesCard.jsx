@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Card from "../../UI/Card";
-import RubyText from "../../SearchResults/entries/WordEntry/RubyText/RubyText";
+import RubyText from "../../UI/RubyText/RubyText";
 
 const SentencesCard = props => {
     const { sentences } = props || undefined;

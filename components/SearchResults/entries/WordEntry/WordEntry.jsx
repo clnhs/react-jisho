@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialog";
 import Pronunciation from "../../../Pronunciation/Pronunciation";
 import SenseBlock from "./SenseBlock";
-import RubyText from "./RubyText/RubyText";
-import Card from "../../../UI/Card";
+import RubyText from "../../../UI/RubyText/RubyText";
 import ResultCard from "../../ResultCard";
 import { useRouter } from "next/router";
 
@@ -68,7 +67,6 @@ const WordEntry = props => {
                                         furigana={
                                             reading.furigana
                                         }
-                                        kana={reading.kana}
                                     />
                                 )}
                             {!reading.furigana && (

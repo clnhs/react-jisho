@@ -1,6 +1,6 @@
 import React from "react";
 import Ruby from "./Ruby";
-import { isKanji } from "../../../../../utils/isKanji";
+import { isKanji } from "../../../utils/isKanji";
 
 const RubyText = props => {
     const { text, furigana} = props || undefined;
