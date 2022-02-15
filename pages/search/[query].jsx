@@ -1,15 +1,20 @@
-import React, {useEffect, useState} from "react";
-import {useRouter} from "next/router";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import useJotoba from "../../hooks/useJotoba";
 import KanjiList from "../../components/SearchResults/KanjiList";
 import WordList from "../../components/SearchResults/WordList";
-import {AiOutlineLoading3Quarters} from "react-icons/ai";
-import {MdErrorOutline, MdHelpOutline} from "react-icons/md";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { MdErrorOutline, MdHelpOutline } from "react-icons/md";
 import Head from "next/head";
 
+/**
+ * The SearchResultsPage page component displays a search results page.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SearchResultsPage = () => {
     const router = useRouter();
-    const {query} = router.query;
+    const { query } = router.query;
     const {
         jotobaIsLoading,
         jotobaHasError,
@@ -30,7 +35,7 @@ const SearchResultsPage = () => {
                 !jotobaIsLoading &&
                 !jotobaHasError && (
                     <div
-                        className={`flex flex-col items-center justify-center w-screen h-auto p-4`}
+                        className={`flex flex-col items-center justify-center w-full h-auto p-4`}
                     >
                         <div
                             className={`grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 w-full justify-center`}
@@ -53,7 +58,7 @@ const SearchResultsPage = () => {
             >
                 <div
                     className={`flex flex-col items-center`}>
-                    <AiOutlineLoading3Quarters className={`mb-4 text-5xl animate-spin`}/>
+                    <AiOutlineLoading3Quarters className={`mb-4 text-5xl animate-spin`} />
                     <span className={`text-3xl text-center`}>Searching...</span>
                 </div>
             </div>}
@@ -66,7 +71,7 @@ const SearchResultsPage = () => {
                     >
                         <div
                             className={`flex flex-col items-center`}>
-                            <MdHelpOutline className={`mb-4 text-7xl text-black dark:text-white`}/>
+                            <MdHelpOutline className={`mb-4 text-7xl text-black dark:text-white`} />
                             <p className={`text-3xl text-center`}>No result for <span
                                 className={`underline underline-offset-4`}>{query}</span>.</p>
                         </div>
@@ -80,7 +85,7 @@ const SearchResultsPage = () => {
                 >
                     <div
                         className={`flex flex-col items-center`}>
-                        <MdErrorOutline className={`mb-4 text-7xl`}/>
+                        <MdErrorOutline className={`mb-4 text-7xl`} />
                         <p className={`text-3xl text-center`}>Could not reach API server.</p>
                         <p className={`mt-2 text-center`}>Please check your internet connection and refresh the
                             page.</p>

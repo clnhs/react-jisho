@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialog";
+import ExternalLookupDialog from "../../../ExternalLookupDialog/ExternalLookupDialog";
 import Pronunciation from "../../../Pronunciation/Pronunciation";
 import SenseBlock from "./SenseBlock";
-import RubyText from "./RubyText/RubyText";
-import Card from "../../../UI/Card";
+import RubyText from "../../../UI/RubyText/RubyText";
+import ResultCard from "../../ResultCard";
+import { useRouter } from "next/router";
 
+/**
+ * Displays details of a word to our user. Used to display words
+ *  in search results.
+ * @param props {word:{reading:Array,senses:Array,audio:string,pitch:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WordEntry = props => {
-    const { reading, common, senses, audio, pitch } =
-    props.word || undefined;
+    const router = useRouter();
+    const { reading,
+        common,
+        senses,
+        audio,
+        pitch } = props.word || undefined;
 
     const [
         externalLookupDialogIsOpen,
@@ -18,23 +30,23 @@ const WordEntry = props => {
         setExternalLookupDialogIsOpen(prev => !prev);
 
     return (
-        <Card
+        <ResultCard
             className={`${
                 common
-                    ? `bg-gradient-to-br from-green-500 to-black/10 dark:to-black/40 group-hover:to-blue-300`
-                    : "bg-black/10 dark:bg-black/40"
+                    ? `bg-gradient-to-br from-green-500 group-hover:to-blue-300`
+                    : ""
             }`}
-            onClick={toggleExternalLookupDialog}
+            onClick={()=>router.push(`/details/word/${reading.kanji||reading.kana}`)}
         >
             <div
                 className={`relative grid grid-cols-2`}
                 style={{
-                    gridTemplateColumns: `min-content 1fr`,
+                    gridTemplateColumns: `min-content minmax(0,1fr)`,
                 }}
             >
                 <div
                     className={`w-6 flex justify-center items-center ${
-                        common ? `bg-green-500` : ""
+                        common ? `bg-green-500 rounded-l-md` : ""
                     }`}
                 >
                     <span
@@ -62,7 +74,6 @@ const WordEntry = props => {
                                         furigana={
                                             reading.furigana
                                         }
-                                        kana={reading.kana}
                                     />
                                 )}
                             {!reading.furigana && (
@@ -85,7 +96,7 @@ const WordEntry = props => {
                                             key={index}
                                             sense={sense}
                                         />
-                                    ),
+                                    )
                                 )}
                             </div>
                         </div>
@@ -96,7 +107,7 @@ const WordEntry = props => {
                     data={{ reading }}
                 />
             </div>
-        </Card>
+        </ResultCard>
     );
 };
 

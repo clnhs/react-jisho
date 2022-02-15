@@ -1,8 +1,18 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { isAppleDevice } from "../../../utils/AppleDeviceDetector";
+import { isAppleDevice } from "../../utils/AppleDeviceDetector";
 import ExternalLookupButton from "./ExternalLookupButton";
 
+/**
+ * Displays an external lookup dialog/modal to our user allowing them
+ *  to quickly jump to an external resource for more information
+ *  about the word or kanji they're looking at.
+ *
+ *  Used on the WordDetails ([word]) and  KanjiDetails ([kanji]) page components.
+ * @param props {{data:{reading?:string,literal?:string}}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ExternalLookupDialog = props => {
     const { reading, literal } = props.data || undefined;
     const term = reading
@@ -17,7 +27,7 @@ const ExternalLookupDialog = props => {
         >
             <Dialog.Portal>
                 <Dialog.Overlay
-                    className={`flex flex-row items-center justify-center fixed top-0 left-0 w-screen h-screen bg-black/70 backdrop-blur-md z-20`}
+                    className={`flex flex-row items-center justify-center fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-md z-20`}
                 >
                     <Dialog.Content
                         className={`bg-white dark:bg-gray-700 dark:text-white w-full sm:w-1/2 p-4 rounded-lg shadow-xl shadow-black/50`}

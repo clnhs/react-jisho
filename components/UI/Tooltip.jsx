@@ -1,7 +1,15 @@
 import React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
+/**
+ * Tooltip to show info on hover.
+ *
+ * @param props {{text:string,side:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Tooltip = props => {
+    const { text, side } = props || undefined;
     return (
         <TooltipPrimitive.Provider>
             <TooltipPrimitive.Root delayDuration={300}>
@@ -9,10 +17,10 @@ const Tooltip = props => {
                     {props.children}
                 </TooltipPrimitive.Trigger>
                 <TooltipPrimitive.Content
-                    side={"top"}
+                    side={side || "top"}
                     className={`bg-black text-white py-1 px-2 rounded-md`}
                 >
-                    Listen
+                    {text || "Listen"}
                     <TooltipPrimitive.Arrow />
                 </TooltipPrimitive.Content>
             </TooltipPrimitive.Root>

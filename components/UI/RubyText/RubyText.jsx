@@ -1,9 +1,16 @@
 import React from "react";
 import Ruby from "./Ruby";
-import { isKanji } from "../../../../../utils/isKanji";
+import { isKanji } from "../../../utils/isKanji";
 
+/**
+ * Component for displaying ruby text to our user.
+ *
+ * @param props {{text:string,furigana:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const RubyText = props => {
-    const { text, furigana, kana } = props || undefined;
+    const { text, furigana } = props || undefined;
     const rubyParts = furigana
         .split(/\[([^\]]*)\]/)
         .filter(str => !!str);
@@ -40,12 +47,12 @@ const RubyText = props => {
                     if (isKanji(char) && rubies[index])
                         return (
                             <Ruby
-                                key={"ruby-for-" + char}
+                                key={`ruby-for-${char}-${index}`}
                                 rubyData={rubies[index]}
                             />
                         );
                 return (
-                    <span key={index + "no-ruby-" + char}>
+                    <span key={`no-ruby-${char}-${index}`}>
                         {char}
                     </span>
                 );

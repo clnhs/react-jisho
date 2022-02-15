@@ -1,5 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 
+/**
+ * Our footer component.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Footer = () => {
 
     return (
