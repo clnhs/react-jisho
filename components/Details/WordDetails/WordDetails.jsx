@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ExternalLookupCard from "../ExternalLookupCard";
 import Card from "../../UI/Card";
 import RubyText from "../../UI/RubyText/RubyText";
 import Pronunciation from "../../Pronunciation/Pronunciation";
@@ -9,6 +8,14 @@ import KanjiList from "../../SearchResults/KanjiList";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 import useJotoba from "../../../hooks/useJotoba";
 
+/**
+ * Displays details of a word to our user. Main component
+ *  of the WordDetailsPage ([word]) page component.
+ *
+ * @param props {{word:Object}} - a word object as obtained through the Jotoba.de api/search/words endpoint, converted from JSON into an object.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WordDetails = props => {
     const { word, relatedKanji } = props || undefined;
     const { reading, pitch, audio, senses } =

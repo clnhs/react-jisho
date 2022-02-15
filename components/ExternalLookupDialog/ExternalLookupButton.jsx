@@ -1,7 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import Tooltip from "../../UI/Tooltip";
+import Tooltip from "../UI/Tooltip";
 
+/**
+ * Buttons used in ExternalLookupDialog and ExternalLookupCard components.
+ *
+ * @param props {{icon?:JSX.Element,iconPath?:string,text?:string,tooltip?:string,tooltipSide:string,target:string,newTab:boolean,onClick:function}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ExternalLookupButton = props => {
     const {
         icon,

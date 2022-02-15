@@ -2,6 +2,14 @@ import React from "react";
 import Card from "../UI/Card";
 import useMatchMedia from "../../hooks/useMatchMedia";
 
+/**
+ * The card component used to display search results in our SearchResultsPage ([query]) page component.
+ *  Serves as the base to the KanjiEntry and WordEntry components.
+ *
+ * @param props {{onClick: function, className:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ResultCard = (props) => {
     const isTouchScreen = useMatchMedia(["hover: none", "pointer: coarse"], "all");
 

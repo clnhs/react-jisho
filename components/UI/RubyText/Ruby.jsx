@@ -1,5 +1,13 @@
 import React from "react";
 
+/**
+ * Wrapper component for the ruby HTMLElement. Used in
+ *  the RubyText component.
+ *
+ * @param props {{char:string,furigana:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Ruby = props => {
     const { char, furigana } = props.rubyData || undefined;
     return (

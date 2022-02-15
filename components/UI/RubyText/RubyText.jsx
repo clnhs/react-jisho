@@ -2,8 +2,15 @@ import React from "react";
 import Ruby from "./Ruby";
 import { isKanji } from "../../../utils/isKanji";
 
+/**
+ * Component for displaying ruby text to our user.
+ *
+ * @param props {{text:string,furigana:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const RubyText = props => {
-    const { text, furigana} = props || undefined;
+    const { text, furigana } = props || undefined;
     const rubyParts = furigana
         .split(/\[([^\]]*)\]/)
         .filter(str => !!str);

@@ -1,9 +1,19 @@
 import React from "react";
-import ExternalLookupButton from "../SearchResults/ExternalLookupDialog/ExternalLookupButton";
+import ExternalLookupButton from "../ExternalLookupDialog/ExternalLookupButton";
 import { isAppleDevice } from "../../utils/AppleDeviceDetector";
 import Card from "../UI/Card";
 import { MdOpenInNew } from "react-icons/md";
 
+/**
+ * Displays an external lookup card to our user allowing them
+ *  to quickly jump to an external resource for more information
+ *  about the word or kanji they're looking at.
+ *
+ *  Used on the WordDetails ([word]) and  KanjiDetails ([kanji]) page components.
+ * @param props {{searchTerm:string,isOpen:boolean,openHandler:function,isMobile:boolean}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ExternalLookupCard = props => {
     const { searchTerm, isOpen, openHandler, isMobile } =
         props || undefined;

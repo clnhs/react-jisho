@@ -4,6 +4,14 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import useMatchMedia from "../../hooks/useMatchMedia";
 
+/**
+ * Our Hero component containing used on our home/index route.
+ *  Displays a big logo, search field and search button as a
+ *  proper search engine does.
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Hero = () => {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");

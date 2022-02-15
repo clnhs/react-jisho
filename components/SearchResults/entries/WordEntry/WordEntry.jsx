@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialog";
+import ExternalLookupDialog from "../../../ExternalLookupDialog/ExternalLookupDialog";
 import Pronunciation from "../../../Pronunciation/Pronunciation";
 import SenseBlock from "./SenseBlock";
 import RubyText from "../../../UI/RubyText/RubyText";
 import ResultCard from "../../ResultCard";
 import { useRouter } from "next/router";
 
+/**
+ * Displays details of a word to our user. Used to display words
+ *  in search results.
+ * @param props {word:{reading:Array,senses:Array,audio:string,pitch:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WordEntry = props => {
     const router = useRouter();
     const { reading,

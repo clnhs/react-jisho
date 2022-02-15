@@ -7,6 +7,11 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdErrorOutline, MdHelpOutline } from "react-icons/md";
 import Head from "next/head";
 
+/**
+ * The SearchResultsPage page component displays a search results page.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SearchResultsPage = () => {
     const router = useRouter();
     const { query } = router.query;

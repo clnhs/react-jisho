@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useEventListener from "../../../hooks/useEventListener";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 import { useRouter } from "next/router";
@@ -7,6 +7,12 @@ import Head from "next/head";
 import KanjiDetails from "../../../components/Details/KanjiDetails/KanjiDetails";
 import ExternalLookupCard from "../../../components/Details/ExternalLookupCard";
 
+/**
+ * The KanjiDetailsPage page component displays details on a specific kanji.
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const KanjiDetailsPage = () => {
     const [isExternalLookupOpen, setIsExternalLookupOpen] =
         useState(true);

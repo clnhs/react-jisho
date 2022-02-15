@@ -9,6 +9,14 @@ import useEventListener from "../../hooks/useEventListener";
 import { useRouter } from "next/router";
 import { IoMdClose } from "react-icons/io";
 
+/**
+ * Search bar allowing our user to search for contents. Used
+ *  in the Hero and Nav components.
+ *
+ * @param props {{embedSearchButton:boolean,navbarEmbed:boolean,placeholder:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SearchBar = props => {
     const inputRef = useRef();
     const router = useRouter();

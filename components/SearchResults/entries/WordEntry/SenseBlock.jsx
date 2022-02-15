@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import { parsePos } from "../../../../utils/JotobaUtils";
 import useSwr from "swr";
 
+/**
+ * Provides a block component displaying the glosses and corresponding
+ *  part of speech corresponding to the word displayed
+ *  in WordEntry and WordDetails ([word]) page components.
+ *
+ *  **misc and xref currently unimplemented**
+ *
+ * @param props {{glosses:Array<Object>,pos:Array<Object>||string,misc?:string,xref?:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SenseBlock = props => {
     const { data: posData, error: posDataError } = useSwr(
         "/PartsOfSpeech.json",

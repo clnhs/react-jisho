@@ -2,6 +2,14 @@ import React, { useEffect } from "react";
 import Card from "../../UI/Card";
 import RubyText from "../../UI/RubyText/RubyText";
 
+/**
+ * Display sentences related to a word to our user when viewing
+ *  a WordDetails page.
+ *
+ * @param props {{sentences:Array<string>}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SentencesCard = props => {
     const { sentences } = props || undefined;
 

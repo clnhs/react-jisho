@@ -13,6 +13,12 @@ import {
 } from "react-icons/md";
 import WordDetails from "../../../components/Details/WordDetails/WordDetails";
 
+/**
+ * The WordDetailsPage page component displays details on a word.
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WordDetailsPage = () => {
     const [isExternalLookupOpen, setIsExternalLookupOpen] =
         useState(true);

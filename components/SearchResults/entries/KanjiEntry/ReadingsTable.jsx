@@ -1,5 +1,13 @@
 import React from "react";
 
+/**
+ * Provides a kanji readings table for our user. Used in the
+ *  KanjiEntry component.
+ *
+ * @param props {{type:string,readings:Array<string>}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ReadingsTable = props => {
     const { type, readings } = props || undefined;
 

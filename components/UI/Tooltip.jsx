@@ -1,6 +1,13 @@
 import React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
+/**
+ * Tooltip to show info on hover.
+ *
+ * @param props {{text:string,side:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Tooltip = props => {
     const { text, side } = props || undefined;
     return (

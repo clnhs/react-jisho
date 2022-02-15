@@ -5,6 +5,15 @@ import Card from "../../UI/Card";
 import { MdHelpOutline } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
+/**
+ * KanjiDetails receives all properties of a given kanji,
+ *  displaying them to the user. The main component of the
+ *  KanjiDetailsPage ([kanji]) page component.
+ *
+ * @param props {{kanji:{literal:string,meanings:Array<string>||string,grade:int,stroke_count:int,frequency:int,jlpt:int,onyomi:Array<string>,kunyomi:Array<string>,parts:Array<string>,radical:string,stroke_frames:string}}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const KanjiDetails = props => {
     const { kanji } = props || undefined;
     const {

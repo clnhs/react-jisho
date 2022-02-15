@@ -1,8 +1,18 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { isAppleDevice } from "../../../utils/AppleDeviceDetector";
+import { isAppleDevice } from "../../utils/AppleDeviceDetector";
 import ExternalLookupButton from "./ExternalLookupButton";
 
+/**
+ * Displays an external lookup dialog/modal to our user allowing them
+ *  to quickly jump to an external resource for more information
+ *  about the word or kanji they're looking at.
+ *
+ *  Used on the WordDetails ([word]) and  KanjiDetails ([kanji]) page components.
+ * @param props {{data:{reading?:string,literal?:string}}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ExternalLookupDialog = props => {
     const { reading, literal } = props.data || undefined;
     const term = reading
