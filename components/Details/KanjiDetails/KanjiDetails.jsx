@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import InfoHeader from "../../SearchResults/entries/KanjiEntry/InfoHeader";
+import InfoHeader from "./InfoHeader";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 import Card from "../../UI/Card";
 import { MdHelpOutline } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import Image from "next/image";
 
 const KanjiDetails = props => {
     const { kanji } = props || undefined;
