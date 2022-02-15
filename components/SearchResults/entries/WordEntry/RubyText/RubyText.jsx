@@ -40,7 +40,7 @@ const RubyText = props => {
                     if (isKanji(char) && rubies[index])
                         return (
                             <Ruby
-                                key={"ruby-for-" + char}
+                                key={`ruby-for-${char}-${index}`}
                                 rubyData={rubies[index]}
                             />
                         );
