@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ExternalLookupCard from "./ExternalLookupCard";
 import Card from "../../UI/Card";
-import RubyText from "../../SearchResults/entries/WordEntry/RubyText/RubyText";
+import RubyText from "../../UI/RubyText/RubyText";
 import Pronunciation from "../../Pronunciation/Pronunciation";
 import SenseBlock from "../../SearchResults/entries/WordEntry/SenseBlock";
 import SentencesCard from "./SentencesCard";
@@ -9,8 +8,18 @@ import KanjiList from "../../SearchResults/KanjiList";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 import useJotoba from "../../../hooks/useJotoba";
 
+/**
+ * Displays details of a word to our user. Main component
+ *  of the WordDetailsPage ([word]) page component.
+ *
+ * @param props {{word:Object}} - a word object as obtained through the Jotoba.de api/search/words endpoint, converted from JSON into an object.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WordDetails = props => {
     const { word, relatedKanji } = props || undefined;
+    const { reading, pitch, audio, senses } =
+        word || undefined;
 
     const isMobile = useMatchMedia(["max-width: 480px"]);
 
@@ -26,10 +35,11 @@ const WordDetails = props => {
     useEffect(() => {
         word &&
             getJotobaSentencesResults(
-                word.reading.kanji || word.reading.kana,
+                reading.kanji || reading.kana,
                 setSentencesResult
             );
     }, [word, setSentencesResult]);
+
     return (
         <div
             className={`${
@@ -56,30 +66,21 @@ const WordDetails = props => {
                                     <div
                                         className={`text-3xl lg:text-4xl jp`}
                                     >
-                                        {word.reading
-                                            .furigana &&
-                                            word.reading
-                                                .kanji && (
+                                        {reading.furigana &&
+                                            reading.kanji && (
                                                 <RubyText
                                                     text={
-                                                        word
-                                                            .reading
-                                                            .kanji
+                                                        reading.kanji
                                                     }
                                                     furigana={
-                                                        word
-                                                            .reading
-                                                            .furigana
+                                                        reading.furigana
                                                     }
                                                 />
                                             )}
-                                        {!word.reading
-                                            .furigana && (
+                                        {!reading.furigana && (
                                             <span>
                                                 {
-                                                    word
-                                                        .reading
-                                                        .kana
+                                                    reading.kana
                                                 }
                                             </span>
                                         )}
@@ -88,31 +89,28 @@ const WordDetails = props => {
                                         className={`grid grid-cols-12 gap-2`}
                                     >
                                         <Pronunciation
-                                            pitch={
-                                                word.pitch
-                                            }
-                                            audio={
-                                                word.audio
-                                            }
+                                            pitch={pitch}
+                                            audio={audio}
                                         />
                                         <div
                                             className={`flex flex-col col-span-9`}
                                         >
-                                            {word.senses.map(
-                                                (
-                                                    sense,
-                                                    index
-                                                ) => (
-                                                    <SenseBlock
-                                                        key={
-                                                            index
-                                                        }
-                                                        sense={
-                                                            sense
-                                                        }
-                                                    />
-                                                )
-                                            )}
+                                            {senses &&
+                                                senses.map(
+                                                    (
+                                                        sense,
+                                                        index
+                                                    ) => (
+                                                        <SenseBlock
+                                                            key={
+                                                                index
+                                                            }
+                                                            sense={
+                                                                sense
+                                                            }
+                                                        />
+                                                    )
+                                                )}
                                         </div>
                                     </div>
                                 </div>

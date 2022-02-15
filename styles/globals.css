@@ -9,6 +9,7 @@ $footerHeight: 2.5rem;
 
 html, body {
     background: black;
+    @apply bg-gray-100 dark:bg-gray-700
 }
 
 body{
@@ -55,8 +56,6 @@ body{
     font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium", sans-serif;
 }
 
-.kanji:hover {
-    .kyoka-on-hover {
-        @apply pt-4 kyoka;
-    }
+.kyoka-on-hover:hover {
+    @apply pt-4 kyoka;
 }

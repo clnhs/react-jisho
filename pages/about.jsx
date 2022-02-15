@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * An about page. Much excite. Very about.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const AboutPage = () => {
     return (
         <div

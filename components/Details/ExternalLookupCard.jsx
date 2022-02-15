@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from "react";
-import ExternalLookupButton from "../../SearchResults/ExternalLookupDialog/ExternalLookupButton";
-import { isAppleDevice } from "../../../utils/AppleDeviceDetector";
-import Card from "../../UI/Card";
+import React from "react";
+import ExternalLookupButton from "../ExternalLookupDialog/ExternalLookupButton";
+import { isAppleDevice } from "../../utils/AppleDeviceDetector";
+import Card from "../UI/Card";
 import { MdOpenInNew } from "react-icons/md";
 
+/**
+ * Displays an external lookup card to our user allowing them
+ *  to quickly jump to an external resource for more information
+ *  about the word or kanji they're looking at.
+ *
+ *  Used on the WordDetails ([word]) and  KanjiDetails ([kanji]) page components.
+ * @param props {{searchTerm:string,isOpen:boolean,openHandler:function,isMobile:boolean}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ExternalLookupCard = props => {
     const { searchTerm, isOpen, openHandler, isMobile } =
         props || undefined;
@@ -15,7 +25,7 @@ const ExternalLookupCard = props => {
         <Card
             className={`w-fit h-fit flex flex-col items-center top-20 ${
                 (isMobile &&
-                    `fixed right-0 border-r-0 rounded-r-none`) ||
+                    `fixed right-0 border-r-0 rounded-r-none top-28`) ||
                 `fixed left-0 border-l-0 rounded-l-none`
             } shadow-lg`}
         >
@@ -57,8 +67,7 @@ const ExternalLookupCard = props => {
                         tooltipSide={"left"}
                         target={`https://eow.alc.co.jp/search?q=${searchTerm}`}
                     />
-                    {typeof window !== "undefined" &&
-                        isAppleDevice && (
+                    {isAppleDevice() && (
                             <ExternalLookupButton
                                 iconPath={
                                     "/monokakido_dictionaries.jpeg"

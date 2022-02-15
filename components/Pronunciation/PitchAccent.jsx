@@ -1,5 +1,12 @@
 import React from "react";
 
+/**
+ * Displays the pitch accent of a word.
+ *
+ * @param props {{pitch:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const PitchAccent = props => {
     const { pitch: unfilteredPitch } = props || undefined;
 

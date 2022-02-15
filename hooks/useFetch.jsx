@@ -1,5 +1,11 @@
 import React, { useCallback, useState } from "react";
 
+/**
+ * Wrapper around `fetch`.
+ *
+ * @param baseUrl
+ * @returns {[boolean,boolean||Error,((function(*=, *): Promise<void>)|*)]}
+ */
 const useFetch = baseUrl => {
     const [isLoading, setIsLoading] = useState(false);
     const [hasError, setHasError] = useState(null);

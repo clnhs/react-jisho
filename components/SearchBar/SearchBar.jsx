@@ -9,10 +9,19 @@ import useEventListener from "../../hooks/useEventListener";
 import { useRouter } from "next/router";
 import { IoMdClose } from "react-icons/io";
 
+/**
+ * Search bar allowing our user to search for contents. Used
+ *  in the Hero and Nav components.
+ *
+ * @param props {{embedSearchButton:boolean,navbarEmbed:boolean,placeholder:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SearchBar = props => {
     const inputRef = useRef();
     const router = useRouter();
-    const { embedSearchButton, navbarEmbed, placeholder } = props || undefined;
+    const { embedSearchButton, navbarEmbed, placeholder } =
+        props || undefined;
     const [searchTerm, setSearchTerm] = useState("");
 
     const inputChangeHandler = e => {
@@ -20,7 +29,7 @@ const SearchBar = props => {
             setSearchTerm(inputRef.current.value);
             if (props.setExternalSearchTerm)
                 props.setExternalSearchTerm(
-                    inputRef.current.value,
+                    inputRef.current.value
                 );
         }
     };
@@ -35,9 +44,12 @@ const SearchBar = props => {
     };
 
     useEffect(() => {
-        if (router.query.query)
+        if (router.query.hasOwnProperty("query"))
             setSearchTerm(router.query.query);
-
+        else if (router.query.hasOwnProperty("kanji"))
+            setSearchTerm(router.query.kanji);
+        else if (router.query.hasOwnProperty("word"))
+            setSearchTerm(router.query.word);
     }, [router.query]);
 
     useEventListener(
@@ -47,9 +59,9 @@ const SearchBar = props => {
                 if (!e.isComposing)
                     e.code === "Enter" && submitHandler();
             },
-            [submitHandler],
+            [submitHandler]
         ),
-        inputRef.current,
+        inputRef.current
     );
 
     return (
@@ -88,28 +100,30 @@ const SearchBar = props => {
                 {/*    <MdImageSearch />*/}
                 {/*</button>*/}
                 {searchTerm.length > 0 && (
-                    <button className={`block px-4 py-2 ${
-                        navbarEmbed
-                            ? "text-2xl"
-                            : "text-2xl sm:text-3xl"
-                    } hover:bg-gray-300 dark:hover:bg-gray-800`}
-                            onClick={searchTermDeletionHandler}
-                    >
-                        <IoMdClose />
-                    </button>
-                )}
-                {navbarEmbed || embedSearchButton && (
                     <button
                         className={`block px-4 py-2 ${
                             navbarEmbed
                                 ? "text-2xl"
                                 : "text-2xl sm:text-3xl"
                         } hover:bg-gray-300 dark:hover:bg-gray-800`}
-                        onClick={submitHandler}
+                        onClick={searchTermDeletionHandler}
                     >
-                        <MdSearch />
+                        <IoMdClose />
                     </button>
                 )}
+                {navbarEmbed ||
+                    (embedSearchButton && (
+                        <button
+                            className={`block px-4 py-2 ${
+                                navbarEmbed
+                                    ? "text-2xl"
+                                    : "text-2xl sm:text-3xl"
+                            } hover:bg-gray-300 dark:hover:bg-gray-800`}
+                            onClick={submitHandler}
+                        >
+                            <MdSearch />
+                        </button>
+                    ))}
             </div>
         </div>
     );

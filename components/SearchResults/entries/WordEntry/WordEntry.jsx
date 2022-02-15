@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialog";
+import ExternalLookupDialog from "../../../ExternalLookupDialog/ExternalLookupDialog";
 import Pronunciation from "../../../Pronunciation/Pronunciation";
 import SenseBlock from "./SenseBlock";
-import RubyText from "./RubyText/RubyText";
-import Card from "../../../UI/Card";
+import RubyText from "../../../UI/RubyText/RubyText";
 import ResultCard from "../../ResultCard";
 import { useRouter } from "next/router";
 
+/**
+ * Displays details of a word to our user. Used to display words
+ *  in search results.
+ * @param props {word:{reading:Array,senses:Array,audio:string,pitch:string}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WordEntry = props => {
     const router = useRouter();
     const { reading,
@@ -30,7 +36,7 @@ const WordEntry = props => {
                     ? `bg-gradient-to-br from-green-500 group-hover:to-blue-300`
                     : ""
             }`}
-            onClick={()=>router.push(`/details/${reading.kanji||reading.kana}`)}
+            onClick={()=>router.push(`/details/word/${reading.kanji||reading.kana}`)}
         >
             <div
                 className={`relative grid grid-cols-2`}
@@ -40,7 +46,7 @@ const WordEntry = props => {
             >
                 <div
                     className={`w-6 flex justify-center items-center ${
-                        common ? `bg-green-500` : ""
+                        common ? `bg-green-500 rounded-l-md` : ""
                     }`}
                 >
                     <span
@@ -68,7 +74,6 @@ const WordEntry = props => {
                                         furigana={
                                             reading.furigana
                                         }
-                                        kana={reading.kana}
                                     />
                                 )}
                             {!reading.furigana && (

@@ -5,7 +5,13 @@ import { MdHelpOutline } from "react-icons/md";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useRouter } from "next/router";
 
-const Nav = props => {
+/**
+ * Our navbar component.
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
+const Nav = () => {
     const router = useRouter();
     const isOnHome = router.pathname === "/";
 

@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import useJotoba from "../../hooks/useJotoba";
-import useMatchMedia from "../../hooks/useMatchMedia";
-import ExternalLookupCard from "../../components/Details/WordDetails/ExternalLookupCard";
-import useEventListener from "../../hooks/useEventListener";
+import useJotoba from "../../../hooks/useJotoba";
+import useMatchMedia from "../../../hooks/useMatchMedia";
+import ExternalLookupCard from "../../../components/Details/ExternalLookupCard";
+import useEventListener from "../../../hooks/useEventListener";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 import {
     MdErrorOutline,
     MdHelpOutline,
 } from "react-icons/md";
-import WordDetails from "../../components/Details/WordDetails/WordDetails";
+import WordDetails from "../../../components/Details/WordDetails/WordDetails";
 
+/**
+ * The WordDetailsPage page component displays details on a word.
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WordDetailsPage = () => {
     const [isExternalLookupOpen, setIsExternalLookupOpen] =
         useState(true);
@@ -152,5 +159,4 @@ const WordDetailsPage = () => {
         </>
     );
 };
-
 export default WordDetailsPage;

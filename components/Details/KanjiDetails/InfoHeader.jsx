@@ -2,8 +2,8 @@ import React from "react";
 import { MdBrush, MdOutlineSchool } from "react-icons/md";
 
 /**
- * KanjiEntry InfoHeader receives grade, jlpt and stroke_count data of kanji
- *  for displaying a convenient header on the KanjiEntry card.
+ * KanjiDetails InfoHeader receives grade, jlpt and stroke_count data of kanji
+ *  for displaying a convenient header on the KanjiDetails card.
  * @param props {{grade: int, jlpt: int, stroke_count: int}}
  * @returns {JSX.Element}
  * @constructor

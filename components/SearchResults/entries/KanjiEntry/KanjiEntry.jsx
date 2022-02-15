@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import ExternalLookupDialog from "../../ExternalLookupDialog/ExternalLookupDialog";
+import ExternalLookupDialog from "../../../ExternalLookupDialog/ExternalLookupDialog";
 import ReadingsTable from "./ReadingsTable";
 import InfoHeader from "./InfoHeader";
 import Card from "../../../UI/Card";
 import ResultCard from "../../ResultCard";
+import { useRouter } from "next/router";
 
+/**
+ * KanjiEntry receives all properties of a given kanji,
+ *  displaying them to the user.
+ *
+ *  **Currently excluded** are frequency, parts, radical and stroke_frames.
+ * @param props {{kanji:{literal:string,meanings:Array<string>||string,grade:int,stroke_count:int,frequency:int,jlpt:int,onyomi:Array<string>,kunyomi:Array<string>,parts:Array<string>,radical:string,stroke_frames:string}}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const KanjiEntry = props => {
+    const router = useRouter();
     const {
         literal,
         meanings,
@@ -31,7 +42,7 @@ const KanjiEntry = props => {
     return (
         <ResultCard
             className={`md:w-48`}
-            onClick={toggleExternalLookupDialog}
+            onClick={()=>router.push(`/details/kanji/${literal}`)}
         >
             <div className={`kanji flex flex-col flex-nowrap justify-between h-full`}>
                 <InfoHeader

@@ -1,7 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import Tooltip from "../../UI/Tooltip";
+import Tooltip from "../UI/Tooltip";
 
+/**
+ * Buttons used in ExternalLookupDialog and ExternalLookupCard components.
+ *
+ * @param props {{icon?:JSX.Element,iconPath?:string,text?:string,tooltip?:string,tooltipSide:string,target:string,newTab:boolean,onClick:function}}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ExternalLookupButton = props => {
     const {
         icon,
@@ -16,7 +23,7 @@ const ExternalLookupButton = props => {
 
     const Button = props => {
         return (
-            <button
+            <a
                 className={`flex flex-row items-center gap-1.5 px-4 py-2 rounded-md box-content bg-white dark:bg-gray-700 hover:bg-gray-300 border border-transparent hover:border-gray-300 dark:hover:border-gray-800 dark:hover:text-black transition-all`}
                 onClick={e => {
                     if (!target && onClick) onClick();
@@ -29,7 +36,7 @@ const ExternalLookupButton = props => {
                 }}
             >
                 {props.children}
-            </button>
+            </a>
         );
     };
 
