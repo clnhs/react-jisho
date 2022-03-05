@@ -21,10 +21,6 @@ const KanjiDetailsPage = () => {
         setIsExternalLookupOpen(false)
     );
 
-    useEventListener("click",(e)=>{
-        console.log(e.target)
-    })
-
     const isMobile = useMatchMedia(["max-width: 480px"]);
     const router = useRouter();
     const { kanji } = router.query || undefined;
