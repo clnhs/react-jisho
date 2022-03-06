@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InfoHeader from "./InfoHeader";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 import Card from "../../UI/Card";
-import { MdHelpOutline } from "react-icons/md";
+import { MdHelpOutline, MdBrush } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 /**
@@ -15,6 +15,7 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
  * @constructor
  */
 const KanjiDetails = props => {
+    const domParser = new DOMParser();
     const { kanji } = props || undefined;
     const {
         literal,
@@ -32,9 +33,32 @@ const KanjiDetails = props => {
 
     const isMobile = useMatchMedia(["max-width: 480px"]);
 
+    const [kanjivg, setKanjivg] = useState(null);
+
+    const svg = nodeString => `<svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                width="200" 
+                                height="200" 
+                                viewBox="0 0 109 109" 
+                                preserveAspectRatio="xMinYMin"
+                                class="kanjivg"
+                                >
+                                    ${nodeString}
+                                </svg>`;
+
     useEffect(() => {
-        console.log(stroke_frames);
-    }, []);
+        const kanjiCharCode = `0${literal
+            .charCodeAt(0)
+            .toString(16)}`;
+
+        setKanjivg(prevState => {
+            fetch(`/api/kanjivg/${kanjiCharCode}`)
+                .then(res => res.json())
+                .then(data =>
+                    setKanjivg(svg(data.nodeString))
+                );
+        });
+    }, [setKanjivg]);
 
     return (
         <div
@@ -179,6 +203,34 @@ const KanjiDetails = props => {
                                         .join(", ")}
                                 </p>
                             </>
+                        )}
+                    </section>
+                </Card>
+                <Card>
+                    <div
+                        className={`flex flex-row text-sm border-b border-gray-200 dark:border-gray-800 p-0.5`}
+                    >
+                        <span
+                            className={`flex items-center px-1`}
+                        >
+                            <MdBrush />
+                        </span>
+                        <p
+                            className={`border-l border-gray-200 dark:border-gray-800 font-bold px-1`}
+                        >
+                            Stroke Order
+                        </p>
+                    </div>
+                    <section>
+                        {!kanjivg && (
+                            <p>Fetching KanjiVG data...</p>
+                        )}
+                        {kanjivg && (
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: kanjivg,
+                                }}
+                            />
                         )}
                     </section>
                 </Card>
