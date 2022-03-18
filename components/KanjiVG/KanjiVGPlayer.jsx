@@ -158,7 +158,9 @@ const KanjiVGPlayer = props => {
                     }
                 />
                 <span className={`p-2 text-md`}>
-                    {`${animationState.stroke+1 < 10 ? " " + animationState.stroke.toString():animationState.stroke+1}/${animationState.total}`}
+                    {`${animationState.stroke + 1 < 10 ? ` ${animationState.stroke+1}`:animationState.stroke+1}/${
+                        animationState.total
+                    }`}
                 </span>
             </div>
         </div>
