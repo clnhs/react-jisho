@@ -18,8 +18,6 @@ const PitchAccent = props => {
         const { accent, index } = props || undefined;
         let { max } = props || undefined;
 
-        console.log(index)
-
         return (
             <>
                 <span
