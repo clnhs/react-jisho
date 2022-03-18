@@ -42,7 +42,6 @@ const PitchAccent = props => {
                     }`}
                 >
                     <span
-                        key={index}
                         className={`bg-white dark:bg-gray-700 ${
                             accent.high
                                 ? index > 0 && `pl-0.5`
@@ -66,7 +65,7 @@ const PitchAccent = props => {
             {pitch.map((accent, index) => {
                 return (
                     <PitchPart
-                        key={accent + index}
+                        key={`pitch-part-${accent.part}-${index}`}
                         accent={accent}
                         index={index}
                         max={pitch.length - 1}

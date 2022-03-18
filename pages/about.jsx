@@ -8,6 +8,7 @@ import React from "react";
 const AboutPage = () => {
     return (
         <div
+            id={"about-page"}
             className={`flex w-full h-full flex-grow justify-center items-center p-8`}
         >
             <div
@@ -22,7 +23,6 @@ const AboutPage = () => {
                         available&nbsp;
                         <a
                             href="https://github.com/clnhs/react-jisho"
-                            className={`font-bold underline hover:text-blue-700 dark:hover:text-blue-400`}
                         >
                             on GitHub
                         </a>
@@ -30,11 +30,10 @@ const AboutPage = () => {
                     </p>
                     <p>
                         This project is a portfolio project
-                        by Colin Hénault-Séguin. It
-                        is built upon the&nbsp;
+                        by Colin Hénault-Séguin. It is built
+                        upon the&nbsp;
                         <a
                             href="https://jotoba.de"
-                            className={`font-bold underline hover:text-blue-700 dark:hover:text-blue-400`}
                         >
                             Jotoba.de
                         </a>
@@ -42,6 +41,19 @@ const AboutPage = () => {
                         facilitates implementing the common
                         data sources required for building a
                         Japanese dictionary.
+                    </p>
+                    <p>
+                        Kanji stroke order data is from
+                        the&nbsp;
+                        <a href="https://github.com/KanjiVG/kanjivg">
+                            KanjiVG project
+                        </a>
+                        , copyright Ulrich Apel and released
+                        under the &nbsp;
+                        <a href="https://creativecommons.org/licenses/by-sa/3.0/">
+                            Creative Commons Attribution-Share Aline 3.0 licence
+                        </a>
+                        .
                     </p>
                 </section>
                 <section className={`flex flex-col gap-2`}>
@@ -53,7 +65,6 @@ const AboutPage = () => {
                             Book icon made available&nbsp;
                             <a
                                 href="https://opensource.org/licenses/MIT"
-                                className={`font-bold underline hover:text-blue-700 dark:hover:text-blue-400`}
                             >
                                 under MIT license
                             </a>
@@ -65,7 +76,6 @@ const AboutPage = () => {
                             Google under the{" "}
                             <a
                                 href="http://www.apache.org/licenses/LICENSE-2.0.txt"
-                                className={`font-bold underline hover:text-blue-700 dark:hover:text-blue-400`}
                             >
                                 Apache License Version 2.0
                             </a>

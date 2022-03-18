@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InfoHeader from "./InfoHeader";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 import Card from "../../UI/Card";
-import { MdHelpOutline } from "react-icons/md";
+import { MdHelpOutline, MdBrush } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import useKanjiVG from "../../../hooks/useKanjiVG";
+import KanjiVGPlayer from "../../KanjiVG/KanjiVGPlayer";
 
 /**
  * KanjiDetails receives all properties of a given kanji,
@@ -15,6 +17,7 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
  * @constructor
  */
 const KanjiDetails = props => {
+    const domParser = new DOMParser();
     const { kanji } = props || undefined;
     const {
         literal,
@@ -30,11 +33,27 @@ const KanjiDetails = props => {
         stroke_frames,
     } = kanji[0] || undefined;
 
+    const {
+        kanjiVGIsLoading,
+        kanjiVGHasError,
+        getKanjiVG,
+    } = useKanjiVG();
+
     const isMobile = useMatchMedia(["max-width: 480px"]);
 
+    const [kanjivgNodeString, setKanjivgNodeString] =
+        useState(null);
+
     useEffect(() => {
-        console.log(stroke_frames);
-    }, []);
+        const kanjiCharCode = `0${literal
+            .charCodeAt(0)
+            .toString(16)}`;
+
+        void getKanjiVG(
+            kanjiCharCode,
+            setKanjivgNodeString
+        );
+    }, [setKanjivgNodeString]);
 
     return (
         <div
@@ -182,6 +201,31 @@ const KanjiDetails = props => {
                         )}
                     </section>
                 </Card>
+                {!kanjiVGHasError && !kanjiVGIsLoading && (
+                    <Card>
+                        <div
+                            className={`flex flex-row text-sm border-b border-gray-200 dark:border-gray-800 p-0.5`}
+                        >
+                            <span
+                                className={`flex items-center px-1`}
+                            >
+                                <MdBrush />
+                            </span>
+                            <p
+                                className={`border-l border-gray-200 dark:border-gray-800 font-bold px-1`}
+                            >
+                                Stroke Order
+                            </p>
+                        </div>
+                        {kanjivgNodeString && (
+                            <KanjiVGPlayer
+                                nodeString={
+                                    kanjivgNodeString
+                                }
+                            />
+                        )}
+                    </Card>
+                )}
             </div>
         </div>
     );

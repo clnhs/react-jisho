@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 /**
  * Wrapper around `fetch`.
  *
- * @param baseUrl
+ * @param {string||undefiend} baseUrl
  * @returns {[boolean,boolean||Error,((function(*=, *): Promise<void>)|*)]}
  */
 const useFetch = baseUrl => {
@@ -22,7 +22,7 @@ const useFetch = baseUrl => {
                     throw new Error("Not configured.");
 
                 if (config.method === "GET")
-                    res = await fetch(rqUrl);
+                    res = await fetch(rqUrl || config.url);
                 else if (config.method !== "GET") {
                     res = await fetch(rqUrl, {
                         method: config.method,

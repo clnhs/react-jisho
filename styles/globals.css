@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,12 +7,13 @@
 $navbarHeight: 4rem;
 $footerHeight: 2.5rem;
 
-html, body {
+html,
+body {
     background: black;
-    @apply bg-gray-100 dark:bg-gray-700
+    @apply bg-gray-100 dark:bg-gray-700;
 }
 
-body{
+body {
     @apply w-full min-h-screen overflow-y-scroll;
     @apply bg-gray-100 dark:bg-gray-700 dark:text-white;
     min-width: 240px;
@@ -22,18 +23,23 @@ body{
     font-family: "Noto Sans", sans-serif;
 }
 
-#nav{
+#nav {
     @apply z-10 w-full box-content fixed top-0;
     height: $navbarHeight;
 }
 
-#contents{
+#contents {
     @apply w-full;
-    padding-top: calc($navbarHeight + env(safe-area-inset-top));
-    padding-bottom: calc($footerHeight + env(safe-area-inset-bottom))
+    padding-top: calc(
+        $navbarHeight + env(safe-area-inset-top)
+    );
+    padding-bottom: calc(
+        $footerHeight + env(safe-area-inset-bottom)
+    );
 }
 
-#hero, #loader-container{
+#hero,
+#loader-container {
     width: 100vw;
     height: calc(100vh - $navbarHeight - $footerHeight);
 }
@@ -48,14 +54,30 @@ body{
     font-family: "Noto Sans JP", sans-serif;
 }
 
-.no-word-break{
+.no-word-break {
     word-break: keep-all;
 }
 
 .kyoka {
-    font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium", sans-serif;
+    font-family: "UD Digi Kyokasho NK-R", "YuKyo-Medium",
+        sans-serif;
 }
 
 .kyoka-on-hover:hover {
     @apply pt-4 kyoka;
+}
+
+.kanjivg {
+    @apply stroke-black dark:stroke-white dark:invert dark:saturate-150 transition-all;
+    @apply w-full sm:w-60;
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#about-page{
+    a{
+        @apply font-bold underline hover:text-blue-700 dark:hover:text-blue-400
+    }
 }

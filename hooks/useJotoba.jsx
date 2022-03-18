@@ -28,6 +28,12 @@ const useJotoba = (searchType = "words") => {
     }
     const [isLoading, hasError, sendRq] = useFetch(baseUrl);
 
+    /**
+     * Get data from Jotoba.de
+     * @param query
+     * @param callback
+     * @returns {Promise<void>||null}
+     */
     const getJotobaResults = (query, callback) => {
         return sendRq(
             {
@@ -45,6 +51,7 @@ const useJotoba = (searchType = "words") => {
                         results.words.length > 0
                     )
                         callback(results);
+                    else callback(null);
                 } else if (searchType === "by_radical") {
                     if (
                         Object.entries("radicals").length >
@@ -53,9 +60,9 @@ const useJotoba = (searchType = "words") => {
                         callback(results);
                 } else if (
                     Object.entries(searchType).length > 0
-                )
+                ) {
                     callback(results[searchType]);
-                else callback(null);
+                } else callback(null);
             }
         );
     };
