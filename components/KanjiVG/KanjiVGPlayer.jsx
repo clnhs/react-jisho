@@ -130,7 +130,9 @@ const KanjiVGPlayer = props => {
                 animationState={animationState}
                 setStrokes={setStrokes}
             />
-            <div className={`flex flex-row items-center justify-center gap-4`}>
+            <div
+                className={`flex flex-row items-center justify-center gap-4`}
+            >
                 <button
                     className={`p-2 text-2xl`}
                     onClick={() =>
@@ -156,7 +158,7 @@ const KanjiVGPlayer = props => {
                     }
                 />
                 <span className={`p-2 text-md`}>
-                    {`${animationState.stroke+1}/${animationState.total}`}
+                    {`${animationState.stroke+1 < 10 ? " " + animationState.stroke.toString():animationState.stroke+1}/${animationState.total}`}
                 </span>
             </div>
         </div>
