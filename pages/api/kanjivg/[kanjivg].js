@@ -53,12 +53,12 @@ export default function handler(req, res) {
                     });
                 else
                     res.status(400).json({
-                        message: `No kanji matching charcode ${kanjiCharCode}`,
+                        error: `No kanji matching charcode ${kanjiCharCode}`,
                     });
             });
         } else
             res.status(400).json({
-                message: "No kanji to find.",
+                error: "No kanji to find.",
             });
     } catch (error) {
         console.error(error);

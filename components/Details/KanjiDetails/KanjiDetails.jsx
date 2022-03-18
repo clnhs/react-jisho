@@ -4,6 +4,8 @@ import useMatchMedia from "../../../hooks/useMatchMedia";
 import Card from "../../UI/Card";
 import { MdHelpOutline, MdBrush } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import useKanjiVG from "../../../hooks/useKanjiVG";
+import KanjiVGPlayer from "../../KanjiVG/KanjiVGPlayer";
 
 /**
  * KanjiDetails receives all properties of a given kanji,
@@ -31,34 +33,27 @@ const KanjiDetails = props => {
         stroke_frames,
     } = kanji[0] || undefined;
 
+    const {
+        kanjiVGIsLoading,
+        kanjiVGHasError,
+        getKanjiVG,
+    } = useKanjiVG();
+
     const isMobile = useMatchMedia(["max-width: 480px"]);
 
-    const [kanjivg, setKanjivg] = useState(null);
-
-    const svg = nodeString => `<svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                width="200" 
-                                height="200" 
-                                viewBox="0 0 109 109" 
-                                preserveAspectRatio="xMinYMin"
-                                class="kanjivg"
-                                >
-                                    ${nodeString}
-                                </svg>`;
+    const [kanjivgNodeString, setKanjivgNodeString] =
+        useState(null);
 
     useEffect(() => {
         const kanjiCharCode = `0${literal
             .charCodeAt(0)
             .toString(16)}`;
 
-        setKanjivg(prevState => {
-            fetch(`/api/kanjivg/${kanjiCharCode}`)
-                .then(res => res.json())
-                .then(data =>
-                    setKanjivg(svg(data.nodeString))
-                );
-        });
-    }, [setKanjivg]);
+        void getKanjiVG(
+            kanjiCharCode,
+            setKanjivgNodeString
+        );
+    }, [setKanjivgNodeString]);
 
     return (
         <div
@@ -206,34 +201,31 @@ const KanjiDetails = props => {
                         )}
                     </section>
                 </Card>
-                <Card>
-                    <div
-                        className={`flex flex-row text-sm border-b border-gray-200 dark:border-gray-800 p-0.5`}
-                    >
-                        <span
-                            className={`flex items-center px-1`}
+                {!kanjiVGHasError && !kanjiVGIsLoading && (
+                    <Card>
+                        <div
+                            className={`flex flex-row text-sm border-b border-gray-200 dark:border-gray-800 p-0.5`}
                         >
-                            <MdBrush />
-                        </span>
-                        <p
-                            className={`border-l border-gray-200 dark:border-gray-800 font-bold px-1`}
-                        >
-                            Stroke Order
-                        </p>
-                    </div>
-                    <section>
-                        {!kanjivg && (
-                            <p>Fetching KanjiVG data...</p>
-                        )}
-                        {kanjivg && (
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: kanjivg,
-                                }}
+                            <span
+                                className={`flex items-center px-1`}
+                            >
+                                <MdBrush />
+                            </span>
+                            <p
+                                className={`border-l border-gray-200 dark:border-gray-800 font-bold px-1`}
+                            >
+                                Stroke Order
+                            </p>
+                        </div>
+                        {kanjivgNodeString && (
+                            <KanjiVGPlayer
+                                nodeString={
+                                    kanjivgNodeString
+                                }
                             />
                         )}
-                    </section>
-                </Card>
+                    </Card>
+                )}
             </div>
         </div>
     );
