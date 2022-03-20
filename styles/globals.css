@@ -68,7 +68,7 @@ body {
 }
 
 .kanjivg {
-    @apply stroke-black dark:stroke-white dark:invert dark:saturate-150 transition-all;
+    @apply stroke-black dark:stroke-white dark:saturate-150;
     @apply w-full sm:w-60;
     fill: none;
     stroke-width: 3;
