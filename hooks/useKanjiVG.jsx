@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useFetch from "./useFetch";
+import useFetch from "../utils/fetch";
 
 const useKanjiVG = () => {
     const [isLoading, hasError, sendRq] = useFetch();
