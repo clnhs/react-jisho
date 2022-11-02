@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 /**
  * Wrapper around `fetch`.
  *
- * @param {string||undefiend} baseUrl
+ * @param {string||undefined} baseUrl
  * @returns {[boolean,boolean||Error,((function(*=, *): Promise<void>)|*)]}
  */
 const useFetch = baseUrl => {
