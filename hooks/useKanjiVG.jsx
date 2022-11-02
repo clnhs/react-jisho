@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../utils/fetch";
 
 const useKanjiVG = () => {
@@ -10,8 +10,9 @@ const useKanjiVG = () => {
                 method: "GET",
                 url: `/api/kanjivg/${charCode}`,
             },
-            data => {
-                const { nodeString } = data;
+            async dataJson => {
+                const { nodeString } =
+                    await dataJson.json();
                 callback(nodeString);
             }
         );

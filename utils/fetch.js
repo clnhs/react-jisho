@@ -44,12 +44,14 @@ const useFetch = baseUrl => {
     const [hasError, setHasError] = useState(null);
 
     const fetch = useCallback((config, callback) => {
+        const { url: rqUrl, ...config2 } = config;
+
         try {
             setIsLoading(true);
             setHasError(null);
             return fetchAndCallback(
-                baseUrl,
-                config,
+                rqUrl ?? baseUrl,
+                config2,
                 callback
             );
         } catch (err) {
