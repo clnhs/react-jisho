@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import useJotoba from "../../hooks/useJotoba";
+import React from "react";
 import KanjiList from "../../components/SearchResults/KanjiList";
 import WordList from "../../components/SearchResults/WordList";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import {
     MdErrorOutline,
     MdHelpOutline,
@@ -19,6 +16,7 @@ import { doFetch } from "../../utils/fetch";
 const SearchResultsPage = ({
     staticQuery,
     staticResults,
+    error,
 }) => {
     return (
         <>
@@ -43,23 +41,6 @@ const SearchResultsPage = ({
                     </div>
                 </div>
             )}
-            {/*{jotobaIsLoading && (<div*/}
-            {/*    id={"loader-container"}*/}
-            {/*    className={`flex flex-col items-center justify-center`}*/}
-            {/*>*/}
-            {/*    <div*/}
-            {/*        className={`flex flex-col items-center`}*/}
-            {/*    >*/}
-            {/*        <AiOutlineLoading3Quarters*/}
-            {/*            className={`mb-4 text-5xl animate-spin`}*/}
-            {/*        />*/}
-            {/*        <span*/}
-            {/*            className={`text-3xl text-center`}*/}
-            {/*        >*/}
-            {/*                    Searching...*/}
-            {/*                </span>*/}
-            {/*    </div>*/}
-            {/*</div>)}*/}
             {!staticResults && (
                 <div
                     id={"loader-container"}
@@ -78,34 +59,36 @@ const SearchResultsPage = ({
                             <span
                                 className={`underline underline-offset-4`}
                             >
-                                {staticQuery}
+                                &quot;{staticQuery}&quot;
                             </span>
                             .
                         </p>
                     </div>
                 </div>
             )}
-            {/*{!jotobaIsLoading && jotobaHasError && (<div*/}
-            {/*    id={"loader-container"}*/}
-            {/*    className={`flex flex-col items-center justify-center w-full h-full`}*/}
-            {/*>*/}
-            {/*    <div*/}
-            {/*        className={`flex flex-col items-center`}*/}
-            {/*    >*/}
-            {/*        <MdErrorOutline*/}
-            {/*            className={`mb-4 text-7xl`}*/}
-            {/*        />*/}
-            {/*        <p*/}
-            {/*            className={`text-3xl text-center`}*/}
-            {/*        >*/}
-            {/*            Could not reach API server.*/}
-            {/*        </p>*/}
-            {/*        <p className={`mt-2 text-center`}>*/}
-            {/*            Please check your internet*/}
-            {/*            connection and refresh the page.*/}
-            {/*        </p>*/}
-            {/*    </div>*/}
-            {/*</div>)}*/}
+            {error && (
+                <div
+                    id={"loader-container"}
+                    className={`flex flex-col items-center justify-center w-full h-full`}
+                >
+                    <div
+                        className={`flex flex-col items-center`}
+                    >
+                        <MdErrorOutline
+                            className={`mb-4 text-7xl`}
+                        />
+                        <p
+                            className={`text-3xl text-center`}
+                        >
+                            Could not reach API server.
+                        </p>
+                        <p className={`mt-2 text-center`}>
+                            Something might&apos;ve happened
+                            with the Jotoba.de API.
+                        </p>
+                    </div>
+                </div>
+            )}
         </>
     );
 };
@@ -115,34 +98,42 @@ export const getServerSideProps = async context => {
         query: { query },
     } = context;
 
-    const response = await doFetch(
-        `https://jotoba.de/api/search/words`,
-        {
-            method: "POST",
-            body: JSON.stringify({
-                query,
-                no_english: false,
-                language: "English",
-            }),
-        }
-    );
+    try {
+        const response = await doFetch(
+            `https://jotoba.de/api/search/words`,
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    query,
+                    no_english: false,
+                    language: "English",
+                }),
+            }
+        );
 
-    const results = await response.json();
+        const results = await response.json();
 
-    return {
-        props: {
-            staticQuery: query,
-            staticResults: (() => {
-                if (
-                    results?.kanji?.length +
-                        results?.words?.length >
-                    0
-                )
-                    return results;
-                return null;
-            })(),
-        },
-    };
+        return {
+            props: {
+                staticQuery: query,
+                staticResults: (() => {
+                    if (
+                        results?.kanji?.length +
+                            results?.words?.length >
+                        0
+                    )
+                        return results;
+                    return null;
+                })(),
+            },
+        };
+    } catch (err) {
+        return {
+            props: {
+                error: err,
+            },
+        };
+    }
 };
 
 export default SearchResultsPage;
