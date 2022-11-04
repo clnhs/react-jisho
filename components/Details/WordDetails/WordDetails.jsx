@@ -115,7 +115,7 @@ const WordDetails = props => {
                                 </div>
                             </div>
                         </Card>
-                        {sentencesResult &&
+                        {sentencesResult?.length > 0 &&
                             !jotobaSentencesIsLoading &&
                             !jotobaSentencesHasError && (
                                 <SentencesCard
