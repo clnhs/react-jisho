@@ -43,24 +43,27 @@ const useFetch = baseUrl => {
     const [isLoading, setIsLoading] = useState(false);
     const [hasError, setHasError] = useState(null);
 
-    const fetch = useCallback((config, callback) => {
-        const { url: rqUrl, ...config2 } = config;
+    const fetch = useCallback(
+        (config, callback) => {
+            const { url: rqUrl, ...config2 } = config;
 
-        try {
-            setIsLoading(true);
-            setHasError(null);
-            return fetchAndCallback(
-                rqUrl ?? baseUrl,
-                config2,
-                callback
-            );
-        } catch (err) {
-            console.error(err);
-            setHasError(err);
-        } finally {
-            setIsLoading(false);
-        }
-    }, []);
+            try {
+                setIsLoading(true);
+                setHasError(null);
+                return fetchAndCallback(
+                    rqUrl ?? baseUrl,
+                    config2,
+                    callback
+                );
+            } catch (err) {
+                console.error(err);
+                setHasError(err);
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [baseUrl]
+    );
 
     return [isLoading, hasError, fetch];
 };
