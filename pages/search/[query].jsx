@@ -32,11 +32,9 @@ const SearchResultsPage = ({
                     >
                         <WordList
                             words={staticResults.words}
-                            className={`flex flex-col col-span-1 gap-4 sm:col-span-2 lg:col-span-7 xl:col-span-6`}
                         />
                         <KanjiList
                             kanji={staticResults.kanji}
-                            className={`col-span-1 md:col-span-2 lg:col-span-5 xl:col-span-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 auto-rows-min sm:justify-items-center`}
                         />
                     </div>
                 </div>

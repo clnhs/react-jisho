@@ -41,10 +41,15 @@ const KanjiEntry = props => {
 
     return (
         <ResultCard
-            className={`md:w-48`}
-            onClick={()=>router.push(`/details/kanji/${literal}`)}
+            // className={`md:w-48`}
+            className={`w-full`}
+            onClick={() =>
+                router.push(`/details/kanji/${literal}`)
+            }
         >
-            <div className={`kanji flex flex-col flex-nowrap justify-between h-full`}>
+            <div
+                className={`kanji flex flex-col flex-nowrap justify-between h-full`}
+            >
                 <InfoHeader
                     data={{ grade, jlpt, stroke_count }}
                 />
@@ -54,19 +59,23 @@ const KanjiEntry = props => {
                     <div
                         className={`flex flex-col items-center justify-center w-full h-24 mb-2 text-center text-7xl overflow-hidden`}
                     >
-                    <span className={`jp kyoka-on-hover`}>
-                        {literal}
-                    </span>
+                        <span
+                            className={`jp kyoka-on-hover`}
+                        >
+                            {literal}
+                        </span>
                     </div>
                     <span
                         className={`block w-full text-center overflow-hidden text-ellipsis px-1 mb-2`}
                     >
-                    {Array.isArray(meanings)
-                        ? meanings.join(", ")
-                        : meanings}
-                </span>
+                        {Array.isArray(meanings)
+                            ? meanings.join(", ")
+                            : meanings}
+                    </span>
                 </div>
-                <div className={`b-0 flex justify-around w-full`}>
+                <div
+                    className={`b-0 flex justify-around w-full`}
+                >
                     <ReadingsTable
                         type={"kunyomi"}
                         readings={kunyomi}

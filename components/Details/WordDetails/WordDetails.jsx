@@ -47,14 +47,13 @@ const WordDetails = props => {
             } p-4 flex flex-col gap-4`}
         >
             <div
-                className={`grid ${
-                    (!isMobile && "grid-cols-2") ||
-                    "grid-cols-1"
-                } gap-4`}
+                className={`flex flex-col w-full h-auto p-4`}
             >
-                <div className={`w-full gap-4`}>
+                <div
+                    className={`grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 w-full justify-center`}
+                >
                     <div
-                        className={`flex flex-col gap-4 items-center`}
+                        className={`flex flex-col col-span-1 gap-4 sm:col-span-2 lg:col-span-7 xl:col-span-6`}
                     >
                         <Card>
                             <div
@@ -126,14 +125,13 @@ const WordDetails = props => {
                                 />
                             )}
                     </div>
-                </div>
-                {relatedKanji &&
-                    relatedKanji.length > 0 && (
+                    {relatedKanji?.length > 0 && (
                         <KanjiList
-                            className={`grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 h-fit`}
+                            // className={`grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 h-fit`}
                             kanji={relatedKanji}
                         />
                     )}
+                </div>
             </div>
         </div>
     );
