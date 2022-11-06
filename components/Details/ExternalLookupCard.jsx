@@ -20,54 +20,54 @@ const ExternalLookupCard = props => {
 
     const toggleIsOpen = () =>
         openHandler(prevState => !prevState);
-
-    return (
-        <Card
-            className={`w-fit h-fit flex flex-col items-center top-20 ${
-                (isMobile &&
-                    `fixed right-0 border-r-0 rounded-r-none top-28`) ||
-                `fixed left-0 border-l-0 rounded-l-none`
-            } shadow-lg`}
-        >
-            {((isMobile && isOpen) || !isMobile) && (
-                <>
-                    <ExternalLookupButton
-                        iconPath={"/jotoba_de.png"}
-                        tooltip={"Jotoba.de"}
-                        tooltipSide={"left"}
-                        target={`https://jotoba.de/search/${searchTerm}`}
-                    />
-                    <ExternalLookupButton
-                        iconPath={"/jisho_org.png"}
-                        tooltip={"Jisho.org"}
-                        tooltipSide={"left"}
-                        target={`https://jisho.org/search/${searchTerm}`}
-                    />
-                    <ExternalLookupButton
-                        iconPath={"/jpdb_io.png"}
-                        tooltip={"jpdb.io"}
-                        tooltipSide={"left"}
-                        target={`https://jpdb.io/search?q=${searchTerm}`}
-                    />
-                    <ExternalLookupButton
-                        iconPath={"/kotobank.png"}
-                        tooltip={"Kotobank"}
-                        tooltipSide={"left"}
-                        target={`https://kotobank.jp/word/${searchTerm}`}
-                    />
-                    <ExternalLookupButton
-                        iconPath={"/weblio-ejje.png"}
-                        tooltip={"Weblio EJJE"}
-                        tooltipSide={"left"}
-                        target={`https://ejje.weblio.jp/content/${searchTerm}`}
-                    />
-                    <ExternalLookupButton
-                        iconPath={"/alc.png"}
-                        tooltip={"ALC"}
-                        tooltipSide={"left"}
-                        target={`https://eow.alc.co.jp/search?q=${searchTerm}`}
-                    />
-                    {isAppleDevice() && (
+    if (typeof window !== "undefined")
+        return (
+            <Card
+                className={`w-fit h-fit flex flex-col items-center top-20 ${
+                    (isMobile &&
+                        `fixed right-0 border-r-0 rounded-r-none top-28`) ||
+                    `fixed left-0 border-l-0 rounded-l-none`
+                } shadow-lg`}
+            >
+                {((isMobile && isOpen) || !isMobile) && (
+                    <>
+                        <ExternalLookupButton
+                            iconPath={"/jotoba_de.png"}
+                            tooltip={"Jotoba.de"}
+                            tooltipSide={"left"}
+                            target={`https://jotoba.de/search/${searchTerm}`}
+                        />
+                        <ExternalLookupButton
+                            iconPath={"/jisho_org.png"}
+                            tooltip={"Jisho.org"}
+                            tooltipSide={"left"}
+                            target={`https://jisho.org/search/${searchTerm}`}
+                        />
+                        <ExternalLookupButton
+                            iconPath={"/jpdb_io.png"}
+                            tooltip={"jpdb.io"}
+                            tooltipSide={"left"}
+                            target={`https://jpdb.io/search?q=${searchTerm}`}
+                        />
+                        <ExternalLookupButton
+                            iconPath={"/kotobank.png"}
+                            tooltip={"Kotobank"}
+                            tooltipSide={"left"}
+                            target={`https://kotobank.jp/word/${searchTerm}`}
+                        />
+                        <ExternalLookupButton
+                            iconPath={"/weblio-ejje.png"}
+                            tooltip={"Weblio EJJE"}
+                            tooltipSide={"left"}
+                            target={`https://ejje.weblio.jp/content/${searchTerm}`}
+                        />
+                        <ExternalLookupButton
+                            iconPath={"/alc.png"}
+                            tooltip={"ALC"}
+                            tooltipSide={"left"}
+                            target={`https://eow.alc.co.jp/search?q=${searchTerm}`}
+                        />
+                        {isAppleDevice() && (
                             <ExternalLookupButton
                                 iconPath={
                                     "/monokakido_dictionaries.jpeg"
@@ -87,16 +87,20 @@ const ExternalLookupCard = props => {
                                 newTab={false}
                             />
                         )}
-                </>
-            )}
-            {isMobile && !isOpen && (
-                <ExternalLookupButton
-                    icon={<MdOpenInNew size={"1.4rem"} />}
-                    onClick={toggleIsOpen}
-                />
-            )}
-        </Card>
-    );
+                    </>
+                )}
+                {isMobile && !isOpen && (
+                    <ExternalLookupButton
+                        icon={
+                            <MdOpenInNew size={"1.4rem"} />
+                        }
+                        onClick={toggleIsOpen}
+                    />
+                )}
+            </Card>
+        );
+
+    return null;
 };
 
 export default ExternalLookupCard;

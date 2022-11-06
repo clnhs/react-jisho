@@ -17,7 +17,6 @@ import KanjiVGPlayer from "../../KanjiVG/KanjiVGPlayer";
  * @constructor
  */
 const KanjiDetails = props => {
-    const domParser = new DOMParser();
     const { kanji } = props || undefined;
     const {
         literal,
@@ -48,7 +47,6 @@ const KanjiDetails = props => {
         const kanjiCharCode = `0${literal
             .charCodeAt(0)
             .toString(16)}`;
-
         void getKanjiVG(
             kanjiCharCode,
             setKanjivgNodeString

@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useEventListener from "../../../hooks/useEventListener";
 import useMatchMedia from "../../../hooks/useMatchMedia";
-import { useRouter } from "next/router";
-import useJotoba from "../../../hooks/useJotoba";
 import Head from "next/head";
 import KanjiDetails from "../../../components/Details/KanjiDetails/KanjiDetails";
 import ExternalLookupCard from "../../../components/Details/ExternalLookupCard";
+import { doFetch } from "../../../utils/fetch";
+import {
+    MdErrorOutline,
+    MdHelpOutline,
+} from "react-icons/md";
 
 /**
  * The KanjiDetailsPage page component displays details on a specific kanji.
@@ -13,7 +16,11 @@ import ExternalLookupCard from "../../../components/Details/ExternalLookupCard";
  * @returns {JSX.Element}
  * @constructor
  */
-const KanjiDetailsPage = () => {
+const KanjiDetailsPage = ({
+    staticKanji,
+    staticKanjiData,
+    error,
+}) => {
     const [isExternalLookupOpen, setIsExternalLookupOpen] =
         useState(true);
 
@@ -22,45 +29,112 @@ const KanjiDetailsPage = () => {
     );
 
     const isMobile = useMatchMedia(["max-width: 480px"]);
-    const router = useRouter();
-    const { kanji } = router.query || undefined;
-
-    const {
-        jotobaIsLoading,
-        jotobaHasError,
-        getJotobaResults,
-    } = useJotoba("kanji");
-
-    const [kanjiResult, setKanjiResult] = useState();
-
-    useEffect(() => {
-        kanji &&
-            getJotobaResults(
-                kanji,
-                setKanjiResult
-            );
-    }, [kanji, setKanjiResult]);
 
     return (
         <>
-            <Head>React辞書・{kanji}</Head>
-            {kanjiResult &&
-                !jotobaIsLoading &&
-                !jotobaHasError && (
-                    <>
-                        <KanjiDetails kanji={kanjiResult} />
-                        <ExternalLookupCard
-                            isMobile={isMobile}
-                            isOpen={isExternalLookupOpen}
-                            openHandler={
-                                setIsExternalLookupOpen
-                            }
-                            searchTerm={kanjiResult[0].literal}
+            <Head>
+                <title>React辞書・{staticKanji}</title>
+            </Head>
+            {staticKanjiData.length > 0 && (
+                <>
+                    <KanjiDetails kanji={staticKanjiData} />
+                    <ExternalLookupCard
+                        isMobile={isMobile}
+                        isOpen={isExternalLookupOpen}
+                        openHandler={
+                            setIsExternalLookupOpen
+                        }
+                        searchTerm={
+                            staticKanjiData[0].literal
+                        }
+                    />
+                </>
+            )}
+            {staticKanjiData.length === 0 && (
+                <div
+                    id={"loader-container"}
+                    className={`flex flex-col items-center justify-center w-full h-full`}
+                >
+                    <div
+                        className={`flex flex-col items-center`}
+                    >
+                        <MdHelpOutline
+                            className={`mb-4 text-7xl text-black dark:text-white`}
                         />
-                    </>
-                )}
+                        <p
+                            className={`text-3xl text-center`}
+                        >
+                            No kanji matching{" "}
+                            <span
+                                className={`underline underline-offset-4`}
+                            >
+                                &quot;{staticKanji}&quot;
+                            </span>
+                            .
+                        </p>
+                    </div>
+                </div>
+            )}
+            {error && (
+                <div
+                    id={`loader-container`}
+                    className={`flex flex-col items-center justify-center w-full h-full`}
+                >
+                    <div
+                        className={`flex flex-col items-center`}
+                    >
+                        <MdErrorOutline
+                            className={`mb-4 text-7xl`}
+                        />
+                        <p
+                            className={`text-3xl text-center`}
+                        >
+                            Could not reach API server.
+                        </p>
+                        <p className={`mt-2 text-center`}>
+                            Something might&apos;ve happened
+                            with the Jotoba.de API.
+                        </p>
+                    </div>
+                </div>
+            )}
         </>
     );
+};
+
+export const getServerSideProps = async context => {
+    const {
+        query: { kanji },
+    } = context;
+
+    try {
+        const jotobaResponse = await doFetch(
+            `https://jotoba.de/api/search/kanji`,
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    query: kanji,
+                    language: "English",
+                    no_english: false,
+                }),
+            }
+        );
+        const { kanji: jotobaKanjiData } =
+            (await jotobaResponse.json()) || null;
+
+        return {
+            props: {
+                staticKanji: kanji,
+                staticKanjiData: jotobaKanjiData,
+            },
+        };
+    } catch (error) {
+        return {
+            props: {
+                error,
+            },
+        };
+    }
 };
 
 export default KanjiDetailsPage;

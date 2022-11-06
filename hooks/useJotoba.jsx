@@ -1,5 +1,5 @@
 import React from "react";
-import useFetch from "./useFetch";
+import useFetch from "../utils/fetch";
 
 /**
  * Hook to get data from the Jotoba.de API.
@@ -38,13 +38,15 @@ const useJotoba = (searchType = "words") => {
         return sendRq(
             {
                 method: "POST",
-                bodyData: {
+                body: JSON.stringify({
                     query,
                     no_english: false,
                     language: "English",
-                },
+                }),
             },
-            results => {
+            async resultsJson => {
+                const results = await resultsJson.json();
+
                 if (searchType === "words") {
                     if (
                         results.kanji.length > 0 ||
