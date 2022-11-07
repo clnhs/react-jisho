@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import useFetch from "../utils/fetch";
 
 /**
@@ -23,7 +23,7 @@ const useJotoba = (searchType = "words") => {
             break;
         default:
             throw new Error(
-                `Jotoba API ${searchType} doesn't exist.`
+                `Jotoba API ${searchType} doesn't exist.`,
             );
     }
     const [isLoading, hasError, sendRq] = useFetch(baseUrl);
@@ -34,7 +34,7 @@ const useJotoba = (searchType = "words") => {
      * @param callback
      * @returns {Promise<void>||null}
      */
-    const getJotobaResults = (query, callback) => {
+    const getJotobaResults = useCallback((query, callback) => {
         return sendRq(
             {
                 method: "POST",
@@ -65,9 +65,9 @@ const useJotoba = (searchType = "words") => {
                 ) {
                     callback(results[searchType]);
                 } else callback(null);
-            }
+            },
         );
-    };
+    }, []);
 
     return {
         jotobaIsLoading: isLoading,

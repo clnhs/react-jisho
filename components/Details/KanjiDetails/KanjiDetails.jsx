@@ -36,7 +36,7 @@ const KanjiDetails = props => {
             .charCodeAt(0)
             .toString(16)}`;
         void getKanjiVG(kanjiCharCode, setKanjivgNodeString);
-    }, [setKanjivgNodeString]);
+    }, [literal, setKanjivgNodeString, getKanjiVG]);
 
     return (<div
         className={`${!isMobile && `pl-20`} p-4 flex flex-col gap-4`}

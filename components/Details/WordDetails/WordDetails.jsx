@@ -33,7 +33,7 @@ const WordDetails = props => {
 
     useEffect(() => {
         word && getJotobaSentencesResults(reading.kanji || reading.kana, setSentencesResult);
-    }, [word, setSentencesResult]);
+    }, [word, reading, setSentencesResult, getJotobaSentencesResults]);
 
     return (<div
         className={`${!isMobile && `pl-20`} p-4 flex flex-col gap-4`}

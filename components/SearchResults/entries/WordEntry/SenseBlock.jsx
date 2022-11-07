@@ -38,7 +38,7 @@ const SenseBlock = props => {
                     parsePos(pos, { posData })
                 )
             );
-    }, [posData, setPosBlocks]);
+    }, [posData, setPosBlocks, partsOfSpeech]);
 
     return (
         <>
