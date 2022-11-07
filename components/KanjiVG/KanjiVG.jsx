@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const svg = nodeString => `<svg 
                             xmlns="http://www.w3.org/2000/svg" 
@@ -10,8 +10,12 @@ const svg = nodeString => `<svg
                             </svg>`;
 
 const KanjiVG = props => {
-    const { nodeString, setAnimationState, animationState, setStrokes } =
-        props || undefined;
+    const {
+        nodeString,
+        setAnimationState,
+        animationState,
+        setStrokes,
+    } = props || undefined;
     const svgContainerRef = useRef();
 
     useEffect(() => {
