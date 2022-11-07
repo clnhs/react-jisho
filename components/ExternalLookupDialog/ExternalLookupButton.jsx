@@ -54,6 +54,7 @@ const ExternalLookupButton = props => {
                                 width={24}
                                 height={24}
                                 className={`rounded-md`}
+                                alt={tooltip}
                             />
                         )}
                         {!iconPath && icon && <>{icon}</>}
@@ -69,6 +70,7 @@ const ExternalLookupButton = props => {
                             width={24}
                             height={24}
                             className={`rounded-md`}
+                            alt={tooltip}
                         />
                     )}
                     {!iconPath && icon && <>{icon}</>}
