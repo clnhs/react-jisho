@@ -1,5 +1,5 @@
-import React from 'react';
-import useFetch from "./useFetch";
+import React from "react";
+import useFetch from "../utils/fetch";
 
 const useJisho = () => {
     const [isLoading, hasError, sendRq] = useFetch(

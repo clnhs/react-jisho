@@ -34,14 +34,14 @@ const SearchBar = props => {
         }
     };
 
-    const searchTermDeletionHandler = e => {
+    const searchTermDeletionHandler = () => {
         setSearchTerm("");
     };
 
-    const submitHandler = () => {
+    const submitHandler = useCallback(() => {
         if (searchTerm)
             router.push(`/search/${searchTerm}`);
-    };
+    }, [searchTerm, router]);
 
     useEffect(() => {
         if (router.query.hasOwnProperty("query"))
@@ -56,8 +56,10 @@ const SearchBar = props => {
         "keydown",
         useCallback(
             e => {
-                if (!e.isComposing)
+                if (!e.isComposing) {
                     e.code === "Enter" && submitHandler();
+                    e.code === "Escape" && e.target.blur();
+                }
             },
             [submitHandler]
         ),

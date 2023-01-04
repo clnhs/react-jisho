@@ -34,6 +34,7 @@ const Hero = () => {
                     width={502}
                     height={152}
                     className={`dark:invert`}
+                    alt={"React Jisho"}
                 />
             </div>
             <div className={`w-11/12 sm:w-9/12`}>

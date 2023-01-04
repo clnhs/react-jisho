@@ -9,12 +9,6 @@ For future improvements, bug reports (oops) and general feedback (thanks!), the 
 
 The webapp is currently deployed at Vercel under the subdomain [https://react-jisho.vercel.app/](https://react-jisho.vercel.app/).
 
-## Repository Branches
-We have three main branches on this project:
-1. `dev`, for, well, development work;
-2. `main`, which holds the latest stable version;
-4. `prod`, which is watched by Vercel for automated build & deployment;
-
 ## Stack
 
 |                            Tech                            |                                                                                                                                              Fancy Logo                                                                                                                                               |
