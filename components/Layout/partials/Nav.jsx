@@ -37,6 +37,7 @@ const Nav = () => {
                                     width={502 / 3}
                                     height={152 / 3}
                                     className={`dark:invert`}
+                                    alt={"React Jisho logo"}
                                 />
                             </a>
                         </Link>

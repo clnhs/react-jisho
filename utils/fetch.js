@@ -16,23 +16,6 @@ export const doFetch = async (rqUrl, fetchParams) => {
     });
 };
 
-export const fetchAndCallback = async (
-    rqUrl,
-    fetchParams = { method: "GET" },
-    callback
-) => {
-    if (!fetchParams) throw new Error("Not configured.");
-
-    const res = await doFetch(rqUrl, fetchParams);
-
-    if (!!res && !res.ok)
-        throw new Error(
-            `Fetch failed with ${res.status}: ${res.statusText}`
-        );
-    const data = await res;
-    callback(data);
-};
-
 /**
  * Wrapper around `fetch`.
  *
@@ -44,25 +27,28 @@ const useFetch = baseUrl => {
     const [hasError, setHasError] = useState(null);
 
     const fetch = useCallback(
-        (config, callback) => {
-            const { url: rqUrl, ...config2 } = config;
+        async (config, callback) => {
+            const { url: rqUrl, ...fetchParams } = config;
 
             try {
                 setIsLoading(true);
                 setHasError(null);
-                return fetchAndCallback(
-                    rqUrl ?? baseUrl,
-                    config2,
-                    callback
-                );
+
+                const res = await doFetch(baseUrl ?? rqUrl, fetchParams);
+
+                if (!!res && !res.ok) {
+                    throw new Error(`Fetch failed with ${res.status}: ${res.statusText}`);
+                }
+
+                const data = await res;
+                callback(data);
             } catch (err) {
-                console.error(err);
                 setHasError(err);
             } finally {
                 setIsLoading(false);
             }
         },
-        [baseUrl]
+        [baseUrl],
     );
 
     return [isLoading, hasError, fetch];

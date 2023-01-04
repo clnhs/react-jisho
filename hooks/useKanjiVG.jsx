@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useFetch from "../utils/fetch";
 
 const useKanjiVG = () => {
     const [isLoading, hasError, sendRq] = useFetch();
 
-    const getKanjiVG = (charCode, callback) => {
+    const getKanjiVG = useCallback((charCode, callback) => {
         return sendRq(
             {
                 method: "GET",
@@ -14,9 +14,9 @@ const useKanjiVG = () => {
                 const { nodeString } =
                     await dataJson.json();
                 callback(nodeString);
-            }
+            },
         );
-    };
+    }, []);
 
     return {
         kanjiVGIsLoading: isLoading,
